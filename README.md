@@ -13,7 +13,12 @@ to specify menu navbar choices.
 The **application/views** folder holds the master template, as well as some relevant view
 fragments.
 
-This project has been repourposed for COMP4711 Assignment1:
+Coding standards:
+Javascript(JQuery)
+CSS(Bootstrap)
+pHp 7.1.1
+
+This project has been repurposed for COMP4711 Assignment1:
 http://comp4711.jlparry.com/display/assignment/assignment1
 
 Use cases:
