@@ -5,6 +5,6 @@
 ?>
 <ul class="nav">
     {menudata}
-    <li><a href="{link}">{name}</a></li>
+    <li><a href="{link}">{page}</a></li>
     {/menudata}
 </ul>
