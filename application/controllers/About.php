@@ -7,13 +7,15 @@ class About extends Application
 
 	function __construct()
 	{
-		parent::__construct();
+            parent::__construct();
+            //$this->load->helper('url');
 	}
 
 	/**
 	 * About page for our app
 	 */
-        public function index() { 
+        public function index() {
+            
             $this->data['pagebody'] = 'about'; 
             $this->render();
         } 

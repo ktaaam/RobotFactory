@@ -18,6 +18,8 @@ if (!defined('APPPATH'))
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
+        <script src="/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -32,10 +34,11 @@ if (!defined('APPPATH'))
                 {content}
             </div>
             <div id="footer" class="span12">
-                Copyright &copy; 2017,  <a href="mailto:someone@somewhere.com">Me</a>.
+                Copyright &copy; 2017,  <a href="mailto:someone@somewhere.com">Team Papaya</a>.
             </div>
         </div>
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
         <script src="/assets/js/jquery-1.11.1.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
     </body>
 </html>
