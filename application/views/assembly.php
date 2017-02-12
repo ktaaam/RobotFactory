@@ -95,11 +95,12 @@
         </table>
         </div>
     </div>
+    </div><!--end combine-->
+    
     <div class="alert alert-danger" id="build_warning">
         <strong>Please Select One of each robot part!</strong>
     </div>
     <button id="build_btn">Build</button>
-    </div><!--end combine-->
     
     <!--List of all robots-->
     <div id="robots">
@@ -124,7 +125,6 @@
         </div>
         <button>Sell Selected</button><button id="robots_select">Select All</button>
     </div>
-</div><!--end content-->
     <script>
     $(document).ready(function(){
         $('#build_warning').hide();
@@ -144,8 +144,9 @@
                 // builds robot
             }
             else{
-                $('#build_warning').show().delay(3000);
+                $('#build_warning').show().delay(3000).fadeOut();
             }
         });
     });
     </script>
+</div><!--end content-->

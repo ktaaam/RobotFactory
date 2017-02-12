@@ -24,17 +24,17 @@ h1,h2{
     overflow-y: scroll;
 }
 
-
 div#combine>div.body_prts{
     float:left;
     width: 33.333%;
 }
+
 div#combine{
-    clear:left;
+    display:block;
+    clear:both;
 }
 
 div#build_warning{
-    max-height: 50px;
     display:block;
-    clear:right;
+    clear:both;
 }
