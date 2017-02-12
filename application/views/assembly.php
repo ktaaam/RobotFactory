@@ -1,32 +1,36 @@
 <div id="content">
-    <div id="parts">
+    <!--List of all robot parts-->
+    <div id="parts" >
         <h2>List of all parts</h2>
-        <!-- for all tables set a max height and add a scroll bar -->
-        <table id="parts_table" class="table table-hover">
-            <tr>
-                <th></th>
-                <th>Part Code</th>
-                <th>Facility Built</th>
-                <th>Date Built</th>
-            </tr>
-            {parts}
+        <div class="large_scrollbar">
+            <table id="parts_table" class="table table-hover">
                 <tr>
-                    <td><input name="parts_check" type="checkbox" /></td>
-                    <td>{part_code}</td>
-                    <td>{built_at}</td>
-                    <td>{date_built}</td>
+                    <th></th>
+                    <th>Part Code</th>
+                    <th>Facility Built</th>
+                    <th>Date Built</th>
                 </tr>
-            {/parts}
-        </table>
+                {parts}
+                    <tr>
+                        <td><input name="parts_check" type="checkbox" /></td>
+                        <td>{part_code}</td>
+                        <td>{built_at}</td>
+                        <td>{date_built}</td>
+                    </tr>
+                {/parts}
+            </table>
+        </div>
         <!-- make buttons look better -->
         <button>Return Selected</button><button id="parts_select">Select All</button>
     </div>
 
-    <!-- for the "Build a robot" div, split the table into 3 columns --> 
+    <!--Build a robot tables--> 
     <div id="combine">
-    <h2>Build a robot</h2>        
-        <div>
-            <h3>Robot Top</h3>
+    <h2>Build a robot</h2>
+    <!--Robot Top-->
+    <div class="body_prts">
+        <h3>Robot Top</h3>
+            <div class="med_scrollbar">
             <table id="top_table" class="table table-hover">
                 <tr>
                     <th></th>
@@ -44,8 +48,12 @@
                 {/top}
             </table>
         </div>
-        <div>
+    </div>
+    
+    <!--Robot Torso-->
+    <div class="body_prts">
         <h3>Robot Torso</h3>
+        <div class="med_scrollbar">
         <table id="torso_table" class="table table-hover">
             <tr>
                 <th></th>
@@ -63,8 +71,12 @@
             {/torso}
         </table>
         </div>
-        <div>
+    </div>
+    
+    <!--Robot Bottom-->
+    <div class="body_prts">
         <h3>Robot Bottom</h3>
+        <div class="med_scrollbar">
         <table id="bottom_table" class="table table-hover">
             <tr>
                 <th></th>
@@ -82,30 +94,36 @@
             {/bottom}
         </table>
         </div>
-        <div class="alert alert-danger" id="build_warning">
-            <strong>Please Select One of each robot part!</strong>
-         </div>
-        <button id="build_btn">Build</button>
     </div>
+    </div><!--end combine-->
+    
+    <div class="alert alert-danger" id="build_warning">
+        <strong>Please Select One of each robot part!</strong>
+    </div>
+    <button id="build_btn">Build</button>
+    
+    <!--List of all robots-->
     <div id="robots">
-    <h2>List of all robots</h2>
-        <table id="robots_table" class="table table-hover">
-            <tr>
-                <th></th>
-                <th>Robot Top</th>
-                <th>Robot Torso</th>
-                <th>Robot Bottom</th>
-            </tr>
-            {robots}
+        <h2>List of all robots</h2>
+        <div class="large_scrollbar">
+            <table id="robots_table" class="table table-hover">
                 <tr>
-                    <td><input name="robots_check" type="checkbox" /></td>
-                    <td>{top}</td>
-                    <td>{torso}</td>
-                    <td>{bottom}</td>
+                    <th></th>
+                    <th>Robot Top</th>
+                    <th>Robot Torso</th>
+                    <th>Robot Bottom</th>
                 </tr>
-            {/robots}
-        </table>
-         <button>Sell Selected</button><button id="robots_select">Select All</button>
+                {robots}
+                    <tr>
+                        <td><input name="robots_check" type="checkbox" /></td>
+                        <td>{top}</td>
+                        <td>{torso}</td>
+                        <td>{bottom}</td>
+                    </tr>
+                {/robots}
+            </table>
+        </div>
+        <button>Sell Selected</button><button id="robots_select">Select All</button>
     </div>
     <script>
     $(document).ready(function(){
@@ -131,4 +149,4 @@
         });
     });
     </script>
-</div>
+</div><!--end content-->

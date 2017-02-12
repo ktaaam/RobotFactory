@@ -17,12 +17,10 @@
             and can ship unneeded parts or assembled robots to Umbrella's Panda Research Center, for credit.</p>
         <p>Each robot piece, or assembled robot, has a Certificate of Authenticity (CA) code, issued by Umbrella Corp. 
             When a plant buys parts from the research center, each comes with its own CA. 
-            When a plant sells parts or robots, they surrender the CA(s) for each of the pieces. 
-            Practically speaking, each CA will be a 6-8 hex digit code, 
-            which can be verified through head office.</p>
+            When a plant sells parts or robots, they surrender the CA(s) for each of the pieces.</p>
     </div>
     <div id="disclaimer">
-        <h4>Disclaimer</h4>
+        <h3>Disclaimer</h3>
         <p>This is an academic project for the <a href="http://www.bcit.ca/">BCIT</a> course, COMP4711.
         This page in now way represents or endorsed by any real or similar business.</p>
     </div>
