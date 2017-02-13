@@ -44,7 +44,7 @@
                </div>
                <div class="col-md-2 col-sm-2 box0">
                   <div class="box1">
-                     <h3>Total Assembled Bots</h3>
+                     <h3>Total Bots Assembled</h3>
                    <span class="li_truck"></span>
                      <h3>50 units</h3>
                   </div>
