@@ -9,7 +9,7 @@
           <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
           <h5 class="centered">Dankpapaya</h5>
           <li class="mt">
-             <a class="active" href="index.html">
+             <a class="active" href="">
              <i class="fa fa-dashboard"></i>
              <span>Dashboard</span>
              </a>
@@ -129,7 +129,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/wonderwoman.png" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/wonderwoman.jpg" class="img-circle" width="80"></p>
                      <p><b>Alex Bai</b></p>
                     <div class="col-md-6">
                         <p class="small mt">MEMBER SINCE</p>
