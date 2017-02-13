@@ -2214,11 +2214,19 @@ label {
     border-left: 3px solid #BEC3C7;
 }
 
+footer.push{
+ 
+    height: 100px;
+    width: 100%;
+}
 /*footer*/
 .site-footer {
+	
     background: #68dff0;
     color: #fff;
     padding: 10px 0;
+	
+    
 }
 
 
