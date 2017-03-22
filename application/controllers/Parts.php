@@ -7,8 +7,8 @@ class Parts extends Application
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('testPart');
-                $this->load->model('Robots');
+		$this->load->model('PartsModel');
+        $this->load->model('Robots');
                 
                 
 	}
@@ -18,10 +18,10 @@ class Parts extends Application
             $this->data['pagebody'] ='Parts';//view
             //give to view
             
-            $source = $this->testPart->all();
+            $source = $this->PartsModel->all();
             $Parts = array();
             foreach($source as $record)
-		$rows[] = $this->parser->parse('my_rows',(array)$record,true);
+		    $rows[] = $this->parser->parse('my_rows',(array)$record,true);
 		
             $this->load->library('table');
 
@@ -35,11 +35,7 @@ class Parts extends Application
             $rows = $this->table->make_columns($rows,3);
             $this->data['partsTable'] = $this->table->generate($rows);
             $this->data['Parts'] = 'Parts';
-            
-             
-            
-  
-            $this->render();
-             
+
+            $this->render();             
 	}
 }
