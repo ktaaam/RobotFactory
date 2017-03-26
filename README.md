@@ -31,7 +31,7 @@ The parts page (for workers) should show all the parts currently on hand, ordere
 
 Clicking on a part should show the complete data you have for that part, including CA, date made or acquired, etc. This would suit a subcontoller and secondary page for just one piece.
 
-Assembly page(Dallas, Jimmy)
+## Assembly page(Dallas, Jimmy)
 The assembly page (for supervisors) lets a user select the pieces that they would like combined to make a complete bot, the pieces that they consider unwanted and would like to return, or the assembled bot(s) that they would like to ship to head office.
 
 This could be accommodated by presenting all the parts you have, with a checkbox beside each. The "returning" could then be handled by selecting all unwanted parts and clicking a "return to head office" button. Assembly could be affected by selected one of each type of part, and clicking a "build it" button.
@@ -44,8 +44,9 @@ The history page (for bosses) should show a list of your plant's history transac
 ## About page(Dallas)
 Inform the user that this is an academic project, and not related to, or endorsed by, any similar business from the real world.
 
-## **Tasks part2:**
-**Homepage(kevin)**
+## ***Tasks part2:***
+
+## **Homepage(kevin)**
 Homepage was all hardcoded. Refactor the homepage so that the data is being pulled from the model by the controller.
 
 ## **Your Data(Jimmy)**
@@ -65,13 +66,13 @@ Clicking on a part should show the complete data you have for that part, includi
 
 Add a "Build more parts" button or link to the page, which would be handled by:
 
-request any newly built parts for this factory, from the Panda Resarch center's /api/build endpoint. That service will return an array of parts certificates, in JSON format
+request any newly built parts for this factory, from the Panda Research center's /api/build endpoint. That service will return an array of parts certificates, in JSON format
 add each of these to your parts table
 Update the appropriate history table(s)
 Service being tested.
 Add a "Buy parts" button or link to the page, which would be handled by:
 
-request a box of random parts for you to use, from the Panda Resarch center's /api/box endpoint. That service will return an array of parts certificates, in JSON format
+request a box of random parts for you to use, from the Panda Research center's /api/box endpoint. That service will return an array of parts certificates, in JSON format
 PRC will deduct the purchase price from your cash balance
 add each of these to your parts table
 Update the appropriate history table(s)
@@ -85,8 +86,16 @@ The list should be filterable, by robot series or robot model. You could use a d
 ## **Manage page(Dallas, Alex)**
 This is for the "Boss" role :)
 There are several features appropriate for this page, handled by tabs or perhaps by separate panels:
-Provide a button or link to "Reboot" your plant. It should send a message to the Panda Research Center's /rebootme, and get an Ok response or a self-explanatory error message. On successful "reboot", empty your inventory & history - you are starting from scratch again, with the appropriate starting balance for a new plant.
+
+Provide a button or link to "Reboot" your plant. 
+It should send a message to the Panda Research Center's /rebootme, and get an Ok response or a self-explanatory error message. On successful "reboot", empty your inventory & history - you are starting from scratch again, with the appropriate starting balance for a new plant.
+
 Provide a mini-form for registering with the PRC. You will need your plant name, which can be saved as a configuration setting inside your app, and your secret token, which should not be stored anywhere inside your app or repo. Send a message to PRC's /registerme/team/token endpoint; it will return an appropriate message. Substitute your team name and token, of course.
 This will establish a session on PRC. If yours closes, you will need to re-register.
-If you use a control table to save key/value pairs for configuring or managing your app, provide a way to display/edit these. For instance, this could include settings that influence any AI you have for suggesting bots to build, or it could include the base URL for the PRC, to avoid hard-coding it.
-Finally, here is where you can sell assembled bot to the PRC. Present a list of the ones you have built, with suitable links to sell them to the PRC one at a time, namely /buyme/part1/part2/part3, where parts 1 through 3 are the tokens for the three parts that make up your bot. The server will respond with Ok or Nak with a self-explanatory error message. If "Ok", you can remove the bot from your database. The PRC will automatically credit your account balance.
+If you use a control table to save key/value pairs for configuring or managing your app, provide a way to display/edit these. 
+For instance, this could include settings that influence any AI you have for suggesting bots to build, or it could include the base URL for the PRC, to avoid hard-coding it.
+
+Finally, here is where you can sell assembled bot to the PRC. 
+Present a list of the ones you have built, with suitable links to sell them to the PRC one at a time, namely /buyme/part1/part2/part3, where parts 1 through 3 are the tokens for the three parts that make up your bot. 
+The server will respond with Ok or Nak with a self-explanatory error message. 
+If "Ok", you can remove the bot from your database. The PRC will automatically credit your account balance.
