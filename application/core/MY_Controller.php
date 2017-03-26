@@ -39,7 +39,7 @@ class Application extends CI_Controller
                     array('page' => 'About', 'link' => '/About'),
                 )
             );
-            if($role == 'Boss'){
+            if(strtolower($role) == 'boss'){
                 $menu_choices = array(
                     'menudata' => array(
                         array('page' => 'Home', 'link' => '/'),
@@ -51,7 +51,7 @@ class Application extends CI_Controller
                     )
                 );
             }
-            else if($role == 'Supervisor'){
+            else if(strtolower($role) == 'supervisor'){
                 $menu_choices = array(
                     'menudata' => array(
                         array('page' => 'Home', 'link' => '/'),
@@ -61,7 +61,7 @@ class Application extends CI_Controller
                     )
                 );
             }
-            else if($role == 'Worker'){
+            else if(strtolower($role) == 'worker'){
                 $menu_choices = array(
                     'menudata' => array(
                         array('page' => 'Home', 'link' => '/'),
