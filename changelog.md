@@ -6,7 +6,7 @@ Team conventions: Allman notation, markdown for changelog
 Release Date: 3/25/17
 
 ## New Components
-    -   controllers
+    - controllers
         - Roles(DT)
             used to set session roles
 
