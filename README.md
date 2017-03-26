@@ -45,20 +45,20 @@ About page(Dallas)
 Inform the user that this is an academic project, and not related to, or endorsed by, any similar business from the real world.
 
 **Tasks part2:**
-Homepage(kevin)
+**Homepage(kevin)**
 Homepage was all hardcoded. Refactor the homepage so that the data is being pulled from the model by the controller.
 
-Your Data(Jimmy)
+**Your Data(Jimmy)**
 You have provided mock data for assignment 1. Put this into appropriate tables in a MySQL database for assignment 2.
 It is up to you how you wish to track "history" - that could be one table, or it could be separate history tables for each kind of activity.
 The "live" data to use will be retrieved from the Umbrella server, per directions that follow.
 The SQL dump in your repository should be a known starting point, suitable for test data. The mock data from assignment 1 could be good for this.
 
-User Roles(Dallas)
+**User Roles(Dallas)**
 I suggest a menu dropdown to switch between user roles, as with labs 5-7.
 You do not need authentication for this assignment.
 
-Parts page(Johnny)
+**Parts page(Johnny)**
 Previous: The parts page (for the "Worker" role) should show all the parts currently on hand, ordered reasonably (piece type?) in a grid with images. Show the model & line as either a tooltip for the image, or underneath each.
 
 Clicking on a part should show the complete data you have for that part, including CA, date made or acquired, etc. This would suit a subcontoller and secondary page for just one piece.
@@ -76,13 +76,13 @@ PRC will deduct the purchase price from your cash balance
 add each of these to your parts table
 Update the appropriate history table(s)
 
-History page(Alex)
+**History page(Alex)**
 Previous: The history page (for bosses) should show a list of your plant's history transactions.
 This list should now be paginated. You can use 20/25 records per page, or provide for that being something the "Boss" can configure.
 The history list should provide for flexible ordering, by date/time or by robot model. I suggest a dropdown for this, although links could work just as well.
 The list should be filterable, by robot series or robot model. You could use a dropdown for these, or provide radio buttons or checkboxes to select the output. A dropdown would result in a "cleaner" UI.
 
-Manage page()
+**Manage page()**
 This is for the "Boss" role :)
 There are several features appropriate for this page, handled by tabs or perhaps by separate panels:
 Provide a button or link to "Reboot" your plant. It should send a message to the Panda Research Center's /rebootme, and get an Ok response or a self-explanatory error message. On successful "reboot", empty your inventory & history - you are starting from scratch again, with the appropriate starting balance for a new plant.
