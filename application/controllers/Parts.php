@@ -8,34 +8,33 @@ class Parts extends Application
 	{
 		parent::__construct();
 		$this->load->model('PartsModel');
-        $this->load->model('Robots');
-                
-                
 	}
 	public function index()
 	{
-            
-            $this->data['pagebody'] ='Parts';//view
-            //give to view
-            
-            $source = $this->PartsModel->all();
-            $Parts = array();
-            foreach($source as $record)
-		    $rows[] = $this->parser->parse('my_rows',(array)$record,true);
-		
-            $this->load->library('table');
+        // Loads the table library
+        $this->load->library('table');
+        // Sets the view body of the page
+        $this->data['pagebody'] ='Parts';        
+        // Retrive all parts from model
+        $source = $this->PartsModel->all();     
 
-            $params = array
-            (
-                'table_open' => '<table class="Parts">',
-                'row_start' => '<td class="test">',
-                'row_alt_start' => '<td class="test">'
-            );
-            $this->table->set_template($params);
-            $rows = $this->table->make_columns($rows,3);
-            $this->data['partsTable'] = $this->table->generate($rows);
-            $this->data['Parts'] = 'Parts';
+        foreach($source as $record){
+            $record['part_pic'] = $record['part_code'] . ".jpeg";
+            $record['part_model'] = strtoupper($record['part_code'][0]);
+            $rows[] = $this->parser->parse('parts_row',(array)$record,true);
+        }
 
-            $this->render();             
+        $params = array
+        (
+            'table_open' => '<table class="Parts">',
+            'row_start' => '<td class="test">',
+            'row_alt_start' => '<td class="test">'
+        );
+
+        $this->table->set_template($params);
+        $rows = $this->table->make_columns($rows,5);
+        $this->data['partsTable'] = $this->table->generate($rows);
+
+        $this->render();             
 	}
 }
