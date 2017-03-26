@@ -44,7 +44,10 @@ The history page (for bosses) should show a list of your plant's history transac
 About page(Dallas)
 Inform the user that this is an academic project, and not related to, or endorsed by, any similar business from the real world.
 
-Tasks part2:
+**Tasks part2:**
+Homepage(kevin)
+Homepage was all hardcoded. Refactor the homepage so that the data is being pulled from the model by the controller.
+
 Your Data(Jimmy)
 You have provided mock data for assignment 1. Put this into appropriate tables in a MySQL database for assignment 2.
 It is up to you how you wish to track "history" - that could be one table, or it could be separate history tables for each kind of activity.
