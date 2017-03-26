@@ -15,8 +15,10 @@ class PartDetails extends Application
 	}
 
     public function get($id){
-        $data = $this->PartsModel->get($id);
-        $thid->data['part'] =  $data;
+        $parts = $this->PartsModel->get($id);
+		$parts[0]['img'] = $parts[0]['part_code'] . '.jpeg';
+        $this->data['parts'] = $parts;
+
         $this->data['pagebody'] ='part_details';   
 
         $this->render(); 
