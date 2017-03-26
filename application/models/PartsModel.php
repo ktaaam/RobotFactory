@@ -1,5 +1,5 @@
 <?php
-class Parts extends CI_Model {
+class PartsModel extends CI_Model {
 	var $data = array(
         array('id' => '1', 'part_code' => 'a1', 'ca' => 'MIICXAIBAAKBgQCqGK', 'built_at' => 'umbrella_f1', 'date_built' => '2017-02-10 13:43:19'),
         array('id' => '2', 'part_code' => 'a2', 'ca' => 'MIICXAIBAAKBgQCqGK', 'built_at' => 'umbrella_f1', 'date_built' => '2017-02-10 13:43:19'),
