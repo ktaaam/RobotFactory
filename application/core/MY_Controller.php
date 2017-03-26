@@ -23,7 +23,7 @@ class Application extends CI_Controller
 
 		//  Set basic view parameters
 		$this->data = array ();
-		$this->data['pagetitle'] = 'Quotes CMS';
+		$this->data['pagetitle'] = 'RobotFactory';
 		$this->data['ci_version'] = (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>'.CI_VERSION.'</strong>' : '';
 	}
 
@@ -32,9 +32,51 @@ class Application extends CI_Controller
 	 */
 	function render($template = 'template')
 	{
-        $this->data['menubar'] = $this->parser->parse('_menubar', $this->config->item('menu_choices'),true);
-		$this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
-		$this->parser->parse('template', $this->data);
+            $role = $this->session->userdata('userrole');
+            $menu_choices = array(
+                'menudata' => array(
+                    array('page' => 'Home', 'link' => '/'),
+                    array('page' => 'About', 'link' => '/About'),
+                )
+            );
+            if($role == 'Boss'){
+                $menu_choices = array(
+                    'menudata' => array(
+                        array('page' => 'Home', 'link' => '/'),
+                        array('page' => 'Parts', 'link' => '/Parts'),
+                        array('page' => 'Assembly', 'link' => '/Assembly'),
+                        array('page' => 'History', 'link' => '/History'),
+                        array('page' => 'Manage', 'link' => '/Manage'),
+                        array('page' => 'About', 'link' => '/About'),
+                    )
+                );
+            }
+            else if($role == 'Supervisor'){
+                $menu_choices = array(
+                    'menudata' => array(
+                        array('page' => 'Home', 'link' => '/'),
+                        array('page' => 'Parts', 'link' => '/Parts'),
+                        array('page' => 'Assembly', 'link' => '/Assembly'),
+                        array('page' => 'About', 'link' => '/About'),
+                    )
+                );
+            }
+            else if($role == 'Worker'){
+                $menu_choices = array(
+                    'menudata' => array(
+                        array('page' => 'Home', 'link' => '/'),
+                        array('page' => 'Parts', 'link' => '/Parts'),
+                        array('page' => 'About', 'link' => '/About'),
+                    )
+                );
+            }
+            
+            //$this->data['menubar'] = $this->parser->parse('_menubar', $this->config->item('menu_boss'),true);
+            //parse '_menubar'
+            $this->data['menubar'] = $this->parser->parse('_menubar',$menu_choices,true);
+            //parse 'pagebody'
+            $this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
+            //parse 'template'
+            $this->parser->parse('template', $this->data);
 	}
-
 }
