@@ -59,54 +59,26 @@
            </div>
             <!-- /row mt -->	
            <div class="row mt">
+              {robotParts}
                <div class="col-md-4 col-sm-4 mb">
                   <div class="white-panel pn">
                     <div class="white-header">
-                        <h5>Total amount of Heads</h5>
+                        <h5>Total amount of {who}</h5>
                      </div>
                      <div class="row">
                        <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Heads: 20</p>
+                           <p><i class="fa fa-heart"></i>Total {who}: 20</p>
                         </div>
                        <div class="col-sm-6 col-xs-6"></div>
                      </div>
                    <div class="centered">
-                        <img src="assets/pix/a1.png" width="120">
+                        
+                        <img src="{imageSrc}" title="{who}" width="120">
+
                      </div>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-4 mb">
-                  <div class="white-panel pn">
-                    <div class="white-header">
-                        <h5>Total amount of Bodys</h5>
-                     </div>
-                     <div class="row">
-                        <div class="col-sm-6 col-xs-6 goleft">
-                          <p><i class="fa fa-heart"></i>Total Bodies: 20</p>
-                        </div>
-                        <div class="col-sm-6 col-xs-6"></div>
-                    </div>
-                    <div class="centered">
-                        <img src="assets/pix/a2.png" width="120">
-                    </div>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-4 mb">
-                  <div class="white-panel pn">
-                     <div class="white-header">
-                        <h5>Total amount of Legs</h5>
-                     </div>
-                     <div class="row">
-                       <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Legs: 20</p>
-                       </div>
-                        <div class="col-sm-6 col-xs-6"></div>
-                     </div>
-                     <div class="centered">
-                       <img src="assets/pix/a1.png" width="120">
-                   </div>
-                 </div>
-               </div>
+               {/robotParts}
                <!-- /col-md-4 -->
               <div class="col-md-4 mb">
                  <!-- WHITE PANEL - TOP USER -->

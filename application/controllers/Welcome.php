@@ -19,13 +19,13 @@ class Welcome extends Application
 		$this->data['pagebody'] = 'homepage';
 
 		// build the list of authors, to pass on to our view
-		$source = $this->quotes->all();
-		$authors = array ();
+		$source = $this->robotHome->all();
+		$robotPart = array ();
 		foreach ($source as $record)
 		{
-			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
+			$robotPart[] = array ('who' => $record['who'], 'imageSrc' => $record['imageSrc']);
 		}
-		$this->data['authors'] = $authors;
+		$this->data['robotParts'] = $robotPart;
 
 		$this->render();
 	}

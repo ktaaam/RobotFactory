@@ -21,7 +21,7 @@ class Parts extends Application
             $source = $this->testPart->all();
             $Parts = array();
             foreach($source as $record)
-		$rows[] = $this->parser->parse('my_rows',(array)$record,true);
+		    $rows[] = $this->parser->parse('my_rows',(array)$record,true);
 		
             $this->load->library('table');
 
