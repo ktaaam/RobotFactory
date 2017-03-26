@@ -4,17 +4,17 @@ class Assembly extends Application {
     function __construct()
 	{
 		parent::__construct();
-            $this->load->model('parts');
-            $this->load->model('robots');
+            $this->load->model('PartsModel');
+            $this->load->model('RobotsModel');
 	}
 
 	public function index()
 	{
-            $parts = $this->parts->all();
-            $top = $this->parts->get_catagory('top');
-            $torso = $this->parts->get_catagory('torso');
-            $bottom = $this->parts->get_catagory('bottom');
-            $robots = $this->robots->all();
+            $parts = $this->PartsModel->all();
+            $top = $this->PartsModel->get_catagory('top');
+            $torso = $this->PartsModel->get_catagory('torso');
+            $bottom = $this->PartsModel->get_catagory('bottom');
+            $robots = $this->RobotsModel->all();
 
             $this->data['parts'] = $parts;
             $this->data['top'] = $top;
@@ -24,8 +24,5 @@ class Assembly extends Application {
 
             $this->data['pagebody'] = 'assembly'; 
             $this->render();
-		//$this->load->view('assembly');
-
-        //$this->parser->parse('assembly',$data);
 	}
 }
