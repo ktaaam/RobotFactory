@@ -25,7 +25,7 @@ class Welcome extends Application
 		{
 			$robotPart[] = array ('who' => $record['who'], 'imageSrc' => $record['imageSrc']);
 		}
-		$robotPartsAmount
+	
 		$this->data['robotParts'] = $robotPart;
 
 		$this->render();
