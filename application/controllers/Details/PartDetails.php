@@ -9,18 +9,23 @@ class PartDetails extends Application
 		parent::__construct();
 		$this->load->model('PartsModel');
 	}
-	public function index()
-	{
-                          
-	}
 
     public function get($id){
-        $parts = $this->PartsModel->get($id);
-		$parts[0]['img'] = $parts[0]['part_code'] . '.jpeg';
-        $this->data['parts'] = $parts;
+		
+        $role = $this->session->userdata('userrole');
 
-        $this->data['pagebody'] ='part_details';   
+        if(strtolower($role) == 'boss' || strtolower($role) == 'supervisor' || strtolower($role) == 'worker'){
 
-        $this->render(); 
+			$parts = $this->PartsModel->get($id);
+			$parts[0]['img'] = $parts[0]['part_code'] . '.jpeg';
+			$this->data['parts'] = $parts;
+
+			$this->data['pagebody'] ='part_details';   
+
+			$this->render(); 
+		}       
+        else{
+            redirect('Welcome');
+        }
     }
 }
