@@ -16,6 +16,13 @@ class RobotsModel extends CI_Model {
 		return $data->result_array();
 	}
 
+	// Build a robot from parts
+	public function build($data){
+		// Insert a new entry to the database using parts
+		$result = $this->db->insert('robots', $data);		
+		return $result;
+	}
+
     // Get all robots
 	public function all()
 	{

@@ -42,7 +42,7 @@
                         </tr>
                         {top}
                         <tr>
-                           <td><input name="top_radio" type="radio" /></td>
+                           <td><input name="top_radio" type="radio" value="{part_id}"/></td>
                            <td>{part_code}</td>
                            <td>{built_at}</td>
                            <td>{date_built}</td>
@@ -64,7 +64,7 @@
                         </tr>
                         {torso}
                         <tr>
-                           <td><input name="torso_radio" type="radio" /></td>
+                           <td><input name="torso_radio" type="radio" value="{part_id}"/></td>
                            <td>{part_code}</td>
                            <td>{built_at}</td>
                            <td>{date_built}</td>
@@ -86,7 +86,7 @@
                         </tr>
                         {bottom}
                         <tr>
-                           <td><input name="bottom_radio" type="radio"/></td>
+                           <td><input name="bottom_radio" type="radio" value="{part_id}"/></td>
                            <td>{part_code}</td>
                            <td>{built_at}</td>
                            <td>{date_built}</td>
@@ -97,8 +97,11 @@
                </div>
             </div>
             <!--end combine-->
-            <div class="alert alert-danger" id="build_warning">
+            <div class="alert alert-danger" id="build_warning" style="display:none">
                <strong>Please Select One of each robot part!</strong>
+            </div>
+            <div class="alert alert-danger" id="database_warning" style="display:none">
+               <strong>Database Error, Please try again later!</strong>
             </div>
             <button id="build_btn">Build</button>
             <!--List of all robots-->
@@ -126,23 +129,48 @@
             </div>
             <script>
                $(document).ready(function(){
-                   $('#build_warning').hide();
-               
+                   // Select all toggle
                    $('#robots_select').click(function(){
                        var checkbox = $('input[name=robots_check]');
                        checkbox.prop('checked',!checkbox.prop('checked'));
                    });
-               
+
+                   // Select all toggle
                    $('#parts_select').click(function(){
                        var checkbox = $('input[name=parts_check]');
                        checkbox.prop('checked',!checkbox.prop('checked'));
                    });
                
+                   // Builds robot 
                    $('#build_btn').click(function(){
-                       if($('input[name=top_radio]:checked').val() && $('input[name=torso_radio]:checked').val() && $('input[name=bottom_radio]:checked').val()){
-                           // builds robot
+                       if($('input[name=top_radio]:checked').val() && $('input[name=torso_radio]:checked').val() && $('input[name=bottom_radio]:checked').val()){                          
+                           var top = $('input[name=top_radio]:checked').val();
+                           var torso = $('input[name=torso_radio]:checked').val();
+                           var bottom = $('input[name=bottom_radio]:checked').val();
+
+                           // Sends part info to database by ajax
+                           $.ajax({
+                               type: 'POST',
+                               url: '<?php echo base_url();?>' + 'Assembly/Build',
+                               dataType: 'JSON',
+                               data:{top: top, torso: torso, bottom: bottom},
+                               success: function(data){
+                                   if(data == 1){
+                                        location.reload();
+                                   }        
+                                   else{
+                                       // Show warning if database error
+                                        $('#database_warning').show().delay(3000).fadeOut();
+                                   }                                                           
+                               },
+                               error: function(){      
+                                    // Show warning if database error                    
+                                    $('#database_warning').show().delay(3000).fadeOut();
+                               }
+                           });
                        }
                        else{
+                           // Show warning if input error
                            $('#build_warning').show().delay(3000).fadeOut();
                        }
                    });
