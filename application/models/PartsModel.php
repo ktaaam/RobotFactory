@@ -36,6 +36,11 @@ class PartsModel extends CI_Model {
 		return $res;
 	}
 
+	public function insert($data){	
+		$res = $this->db->insert_batch('parts',$data);
+		return $res;
+	}
+
     // Get all parts
 	public function all()
 	{

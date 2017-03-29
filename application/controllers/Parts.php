@@ -7,8 +7,9 @@ class Parts extends Application
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('PartsModel');
+		$this->load->model('partsmodel');
 	}
+
 	public function index()
 	{
         $role = $this->session->userdata('userrole');
@@ -19,7 +20,7 @@ class Parts extends Application
             // Sets the view body of the page
             $this->data['pagebody'] ='Parts';        
             // Retrive all parts from model
-            $source = $this->PartsModel->all();     
+            $source = $this->partsmodel->all();     
 
             // Loops through all the parts and addds them to the array
             foreach($source as $record){
@@ -47,4 +48,64 @@ class Parts extends Application
             redirect('Welcome');
         }
 	}
+
+    public function build(){
+        $key = '321c34';
+
+        $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        ); 
+
+        $response = file_get_contents('https://umbrella.jlparry.com/work/mybuilds?key=' . $key, false, stream_context_create($arrContextOptions));
+        $data = json_decode($response);
+
+        if($data != null){
+            $output = array();
+            $i = 0;
+
+            foreach($data as $record){
+                $output[$i]['part_ca'] = $record->{'id'};
+                $output[$i]['part_code'] = $record->{'model'} . $record->{'piece'};
+                $output{$i}['built_at'] = $record->{'plant'};
+                $output{$i}['date_built'] = $record->{'stamp'};
+                $i++;            
+            }
+
+            $res = $this->partsmodel->insert($output);
+        }
+
+        redirect('Parts');
+    }
+
+    public function buy(){
+        $key = '321c34';
+
+        $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        ); 
+
+        $response = file_get_contents('https://umbrella.jlparry.com/work/buybox?key=' . $key, false, stream_context_create($arrContextOptions));
+        $data = json_decode($response);
+
+        $output = array();
+        $i = 0;
+
+        foreach($data as $record){
+            $output[$i]['part_ca'] = $record->{'id'};
+            $output[$i]['part_code'] = $record->{'model'} . $record->{'piece'};
+            $output{$i}['built_at'] = $record->{'plant'};
+            $output{$i}['date_built'] = $record->{'stamp'};
+            $i++;            
+        }
+
+        $res = $this->partsmodel->insert($output);
+
+        redirect('Parts');
+    }
 }
