@@ -1,7 +1,7 @@
 <?php
 /* 
- * This controller controlls the which user can see which page to go
- * to in the navigation bar
+ * This controller controlls which role the user is during
+ * the session.
  */
 class Roles extends Application
 {

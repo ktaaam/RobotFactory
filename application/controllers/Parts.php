@@ -11,40 +11,40 @@ class Parts extends Application
 	}
 	public function index()
 	{
-        $role = $this->session->userdata('userrole');
+            $role = $this->session->userdata('userrole');
 
-        if(strtolower($role) == 'boss' || strtolower($role) == 'supervisor' || strtolower($role) == 'worker'){
-            // Loads the table library
-            $this->load->library('table');
-            // Sets the view body of the page
-            $this->data['pagebody'] ='Parts';        
-            // Retrive all parts from model
-            $source = $this->PartsModel->all();     
+            if(strtolower($role) == 'boss' || strtolower($role) == 'supervisor' || strtolower($role) == 'worker'){
+                // Loads the table library
+                $this->load->library('table');
+                // Sets the view body of the page
+                $this->data['pagebody'] ='Parts';        
+                // Retrive all parts from model
+                $source = $this->PartsModel->all();     
 
-            // Loops through all the parts and addds them to the array
-            foreach($source as $record){
-                $record['part_pic'] = $record['part_code'] . ".jpeg";
-                $record['part_model'] = strtoupper($record['part_code'][0]);
-                $rows[] = $this->parser->parse('parts_row',(array)$record,true);
+                // Loops through all the parts and addds them to the array
+                foreach($source as $record){
+                    $record['part_pic'] = $record['part_code'] . ".jpeg";
+                    $record['part_model'] = strtoupper($record['part_code'][0]);
+                    $rows[] = $this->parser->parse('parts_row',(array)$record,true);
+                }
+
+                // Sets table template
+                $params = array
+                (
+                    'table_open' => '<table class="Parts">',
+                    'row_start' => '<td class="test">',
+                    'row_alt_start' => '<td class="test">'
+                );
+
+                // Generates table
+                $this->table->set_template($params);
+                $rows = $this->table->make_columns($rows,5);
+                $this->data['partsTable'] = $this->table->generate($rows);
+
+                $this->render();      
+            }       
+            else{
+                redirect('Welcome');
             }
-
-            // Sets table template
-            $params = array
-            (
-                'table_open' => '<table class="Parts">',
-                'row_start' => '<td class="test">',
-                'row_alt_start' => '<td class="test">'
-            );
-
-            // Generates table
-            $this->table->set_template($params);
-            $rows = $this->table->make_columns($rows,5);
-            $this->data['partsTable'] = $this->table->generate($rows);
-
-            $this->render();      
-        }       
-        else{
-            redirect('Welcome');
         }
-	}
 }
