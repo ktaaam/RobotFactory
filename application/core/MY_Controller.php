@@ -32,13 +32,15 @@ class Application extends CI_Controller
 	 */
 	function render($template = 'template')
 	{
-            $role = $this->session->userdata('userrole');
+            $role = $this->session->userdata('userrole');//get the session role
+            //default menu choices with guest options
             $menu_choices = array(
                 'menudata' => array(
                     array('page' => 'Home', 'link' => '/'),
                     array('page' => 'About', 'link' => '/About'),
                 )
             );
+            //menu choices with boss options
             if(strtolower($role) == 'boss'){
                 $menu_choices = array(
                     'menudata' => array(
@@ -51,6 +53,7 @@ class Application extends CI_Controller
                     )
                 );
             }
+            //menu choices with supervisor options
             else if(strtolower($role) == 'supervisor'){
                 $menu_choices = array(
                     'menudata' => array(
@@ -61,6 +64,7 @@ class Application extends CI_Controller
                     )
                 );
             }
+            //menu choices with worker options
             else if(strtolower($role) == 'worker'){
                 $menu_choices = array(
                     'menudata' => array(
