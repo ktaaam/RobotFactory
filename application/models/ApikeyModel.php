@@ -12,18 +12,18 @@ class ApikeyModel extends CI_Model {
          * There should only be one key returned
          */
         public function getKey(){
-            $data = $this->db->get('ApikeyModel');
+            $data = $this->db->get('apikeys');
             return $data->result_array();
         }
         
         // replace old key with new key
-        public function updateKey($key){
-            
+        public function updateKey($key)
+        {
             $data = array(
                 'apikey' => $key
             );
             $this->db->where('keyId',1);
-            $this->db->update('ApikeyModel',$data);
+            $this->db->update('apikeys',$data);
         }
         
         // inserts a new key
@@ -31,7 +31,7 @@ class ApikeyModel extends CI_Model {
             $data = array(
                 'apikey' => $key
             );
-            $this->db->insert('ApikeyModel',$data);
+            $this->db->insert('apikeys',$data);
         }
 }
 
