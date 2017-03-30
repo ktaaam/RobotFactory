@@ -23,25 +23,36 @@ class Manage extends Application
                 "verify_peer_name"=>false,
             ),
         ); 
-         $response = file_get_contents('https://umbrella.jlparry.com/work/rebootme',false, stream_context_create($context));
-         $data = json_decode($response);
-         return $data[0];//returns if reboot was successful
+         $apiKey = $this->ApikeyModel->getKey('apikeys');
+         $response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key=2fed38',false, stream_context_create($context));
+         //$response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key='+$apiKey[0]['apikey'],false, stream_context_create($context));
+         $data = explode(" ",$response);
+         if(strtolower($data[0])=="ok"){
+             echo 1;//return ok
+         }
+         else{
+            echo 0;//return error
+         }
      }
      
      //register factory with server
-     public function register($pName, $sToken){
+     public function register(){
          $context=array(
             "ssl"=>array(
                 "verify_peer"=>false,
                 "verify_peer_name"=>false,
             ),
         ); 
+         $pName = $this->input->post('pName');
+         $sToken = $this->input->post('sToken');
+         $url = 'https://umbrella.jlparry.com/work/registerme/'.$pName.'/'.$sToken;
          //parse response into array
-         $response = file_get_contents('https://umbrella.jlparry.com/work/registerme/'+$pName+'/'+$sToken,false, stream_context_create($context));
-         $data = json_decode($response);
-         $key = $this->db->get('apikeys');
+         $response = file_get_contents($url,false, stream_context_create($context));
+         //$response = file_get_contents('https://umbrella.jlparry.com/work/registerme/papaya/247843',false, stream_context_create($context));
+         $data = explode(" ",$response);
+         $key = $this->ApikeyModel->getKey('apikeys');
          if(strtolower($data[0])=="ok"){//check if response is ok
-            if($key->num_rows()>0){//check if a key exists in db
+            if(sizeof($key)>0){//check if a key exists in db
                $key = $data[1];//set response val as key
                $this->ApikeyModel->updateKey($key);
             }
@@ -49,7 +60,10 @@ class Manage extends Application
                $key = $data[1];
                $this->ApikeyModel->addKey($key);
             }
+            echo 1;//return ok
          }
-         return $response;//return ok or error
+         else{
+            echo 0;//return error
+         }
      }
 }

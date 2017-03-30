@@ -35,6 +35,8 @@
             <script>
             $(document).ready(function(){
                 var newURL = window.location.protocol + "//" + window.location.host;
+                
+                //reboots factory
                 $('#btn_reboot').click(function(){
                 var msg = "WARNING: Rebooting the plant causes everything to be reset. " +
                         "Are you sure you want to do this?.";
@@ -42,44 +44,48 @@
                         $.ajax({
                                 type: 'POST',
                                 url: '<?php echo base_url(); ?>' + 'Manage/Reboot',
-                                dataType: 'JSON',
+                                //dataType: 'JSON',
                                 success:function(response){
                                     alert(response);
-                                    if(response.toLowerCase() == 'ok'){
+                                    if(response == 1){
                                         alert('Plant Reset' + response);
                                     }
-                                    location.reload();
+                                    else{
+                                        alert('ERROR: Could not reboot plant' + response);
+                                    }
+                                    //location.reload();
                                 },
-                                error:function(msg){
-                                    alert('ERROR: Could not reboot the plant' + msg);
-                                    location.reload();
+                                error:function(){
+                                    alert('ERROR: Server could not process your request');
+                                    //location.reload();
                                 }
                         });
                     }
                 });
                 
-                
+                //registers factory
                 $('#btn_register').click(function(){
                     var pName = $('#plant_name').val();
                     var sToken = $('#secret_token').val();
                     if (pName != null && pName != "" && sToken != null && sToken != ""){
+                        console.log(pName+sToken);
                         $.ajax({
                                 type: 'POST',
                                 url: '<?php echo base_url(); ?>' + 'Manage/Register',
                                 dataType: 'JSON',
                                 data:{pName: pName, sToken: sToken},
                                 success:function(response){
-                                    alert(response);
-                                    if (reponse.toLowerCase() == 'ok'){
-                                        alert('Plant Registerd ' + response);
+                                    //alert(response);
+                                    if (response==1){
+                                        alert('Plant Registerd');
                                     }
                                     else{
-                                        alert('Invalid factory name or token given' + response);
+                                        alert('Invalid factory name or token given');
                                     }
                                     location.reload();
                                 },
-                                error:function(msg){
-                                    alert('Invalid factory name or token given' + msg);
+                                error:function(){
+                                    alert('ERROR: Server could not process your request');
                                     location.reload();
                                 }
                         });

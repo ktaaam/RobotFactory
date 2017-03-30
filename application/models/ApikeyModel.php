@@ -23,7 +23,7 @@ class ApikeyModel extends CI_Model {
                 'apikey' => $key
             );
             $this->db->where('keyId',1);
-            $this->db->update('apikeys',$data);
+            $result = $this->db->update('apikeys',$data);
         }
         
         // inserts a new key
@@ -31,7 +31,7 @@ class ApikeyModel extends CI_Model {
             $data = array(
                 'apikey' => $key
             );
-            $this->db->insert('apikeys',$data);
+            $result = $this->db->insert('apikeys',$data);
         }
 }
 
