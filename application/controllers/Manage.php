@@ -14,12 +14,24 @@ class Manage extends Application
          $this->data['pagebody'] ='Manage';
          $this->render();  
      }
+     
+     //reboots factory to default
      public function reboot(){
-         $response = file_get_contents('https://umbrella.jlparry.com/xxx?key=YOUR_API_KEY');
+         $response = file_get_contents('https://umbrella.jlparry.com/work/rebootme');
      }
+     
      public function register($pName, $sToken){
-         $response = file_get_contents('https://umbrella.jlparry.com/work/registerme/'+$pName+'/'+$sToken);
-         $key = substr($response, ' ');
-         $this->apikey->addKey($key);
+         //parse response into array
+         $response = explode(" ",file_get_contents('https://umbrella.jlparry.com/work/registerme/'+$pName+'/'+$sToken));
+         $key = $this->db->get('ApikeyModel');
+         if($key != null){//key exists in db
+            $key = $response[1];//set key as given value
+            $this->ApikeyModel->updateKey($key);
+         }
+         else{//key does not exist in db
+            $key = $response[1];
+            $this->ApikeyModel->addKey($key);
+         }
+         return $response[0];//return ok or error
      }
 }

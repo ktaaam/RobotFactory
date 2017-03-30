@@ -10,13 +10,13 @@
                            <td>Plant Name:</td>
                        </tr>
                        <tr>
-                           <td><input type="texr" id="plant_name"></td>
+                           <td><input type="texr" id="plant_name" required></td>
                        </tr>
                        <tr>
                            <td>Secret Token:</td>
                        </tr>
                        <tr>
-                           <td><input type="texr" id="secret_token"></td>
+                           <td><input type="texr" id="secret_token" required></td>
                        </tr>
                        <tr>
                            <td><button id="btn_register">Register</button></td>
@@ -31,31 +31,40 @@
            <script>
                var newURL = window.location.protocol + "//" + window.location.host;
                $('#btn_reboot').click(function(){
-                  $.ajax({
-                      type: 'POST',
-                      url: newURL + '/Manage/Reboot',
-                      success:function(data){
-                          
-                      }
-                  }); 
+                   var msg = "WARNING: Rebooting the plant causes everything to be reset. "+
+                           "Are you sure you want to do this?.";
+                   if(confirm(msg)==true){
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo base_url();?>' + 'Manage/Reboot',
+                            success:function(data){
+                                location.reload();
+                                alert('Plant Reset');
+                            }
+                        }); 
+                  }
                });
                var pName = $('#plant_name').val();
-               var stoken = $('#secret_token').val();
+               var sToken = $('#secret_token').val();
                $('#btn_register').click(function(){
-                  $.ajax({
-                      type: 'POST',
-                      url: <?php echo base_url();?> + '/Manage/Register',
-                      dataType: 'JSON',
-                      data:(pName:pName, sToken:sToken),
-                      success:function(response){
-                          if(reponse.toLowerCase()=='ok'){
-                              alert('Plant Registerd');
-                          }
-                          else{
-                              alert('Invalid factory name or token given');
-                          }
-                      }
-                  }); 
+                 if(pName != null && pName != "" && sToken != null && sToken != ""){
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo base_url();?>' + 'Manage/Register',
+                        dataType: 'JSON',
+                        data:{pName:pName, sToken:sToken},
+                        success:function(response){
+                            if(reponse.toLowerCase()=='ok'){
+                                alert('Plant Registerd');
+                                location.reload();
+                            }
+                            else{
+                                alert('Invalid factory name or token given');
+                                location.reload();
+                            }
+                        }
+                    }); 
+                 } 
                });
                
            </script>
