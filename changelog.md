@@ -74,3 +74,27 @@ Release Date: 3/27/17
 - css
     - style.css(JW)
         fixed warning box behavior
+
+## *Version 2.3*
+
+Release Date: 3/30/17
+
+## New Components
+
+## Updated Components
+- controllers
+    - Welcom(KT)
+        -updated the welcome page to used models Parts, History, and robots
+        in order to grab the assembled robots, how many parts in hand, how many bots sold
+        -pulled the team balance and added to the dashboard      
+    
+- views
+    - homepage.php(KT)
+        - added 2 more boxes (torso,bottom) and updated the input to not be hard coded but
+        to pull data from the database.
+- models
+    - deleted robotHome as it decided that it was not neccessary to have
+- config
+    
+- css
+   

@@ -31,9 +31,16 @@
                <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   <div class="box1">
                      {robotParts}
-                     <h3>Total Amount Spent</h3>
+                     <h3>Total Assembled Bots Sold </h3>
                      <span class="li_banknote"></span>
-                     <h3>$5000</h3>
+                     <h3>{totalBotsSold} units</h3>
+                  </div>
+               </div>
+               <div class="col-md-2 col-sm-2 box0">
+                  <div class="box1">
+                     <h3>Total Bots Purchased </h3>
+                     <span class="li_shop"></span>
+                     <h3>{totalBotsBought} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
@@ -52,9 +59,9 @@
                </div>
                <div class="col-md-2 col-sm-2 box0">
                   <div class="box1">
-                    <h3>Total Amount Earned</h3>
+                    <h3>Total Balance Amount</h3>
                      <span class="li_vallet"></span>
-                     <h3>$5000</h3>
+                     <h3>${balance}</h3>
                   </div>
                </div>
            </div>
@@ -147,7 +154,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/flash.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/flash.jpeg" class="img-circle" width="80"></p>
                      <p><b>Jimmy Wang</b></p>
                     <div class="col-md-6">
                        <p class="small mt">MEMBER SINCE</p>

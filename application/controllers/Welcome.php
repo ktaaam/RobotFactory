@@ -10,6 +10,7 @@ class Welcome extends Application
 		parent::__construct();
 		$this->load->model('PartsModel');
 		$this->load->model('RobotsModel');
+		$this->load->model('HistoryModel');
 
 	}
 
@@ -23,11 +24,14 @@ class Welcome extends Application
         $torsoPartsCounter  = 0;
         $totalParts         = 0;
         $totalRobotsAssem   = 0;
+        $totalBotsSold      = 0;
+        $totalBotsBought    = 0;
 
         $this->data['pagebody'] = 'homepage'; 
 		// build the list of parts, to pass on to our view
 		$source = $this->PartsModel->all();
 		$robots = $this->RobotsModel->all();
+		$history = $this->HistoryModel->all();
 		$robotPart = array ();
 		foreach ($source as $record)
 		{
@@ -49,6 +53,16 @@ class Welcome extends Application
 		{
 			$totalRobotsAssem = $totalRobotsAssem + 1;
 		}
+
+		foreach($history as $record)
+		{
+			if($record['purchaseType'] == "sell"){
+				$totalBotsSold = $totalBotsSold + 1;
+			}else if($record['purchaseType'] == "buy"){
+				$totalBotsBought = $totalBotsBought + 1;
+			}
+		}
+		$response = file_get_contents('https://umbrella.jlparry.com/info/balance/papaya');
 		$robotPart[] = array('totalPartsCounter' => $totalParts, 
                             'topPartsCounter'    => $topPartsCounter, 
                             'torsoPartsCounter'  => $torsoPartsCounter, 
@@ -56,7 +70,10 @@ class Welcome extends Application
                             'totalRobotsAssem'   => $totalRobotsAssem,
                             'topImageSrc'        => 'a1.jpeg',
                             'torsoImageSrc'      => 'a2.jpeg',
-                            'bottomImageSrc'     => 'a3.jpeg');
+                            'bottomImageSrc'     => 'a3.jpeg',
+                            'balance'            => $response,
+                            'totalBotsSold'      => $totalBotsSold,
+                            'totalBotsBought'    => $totalBotsBought);
 		$this->data['robotParts'] = $robotPart;
 
 		$this->render();
