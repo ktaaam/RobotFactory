@@ -30,6 +30,7 @@
             <div class="row mtbox">
                <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   <div class="box1">
+                     {robotParts}
                      <h3>Total Amount Spent</h3>
                      <span class="li_banknote"></span>
                      <h3>$5000</h3>
@@ -39,14 +40,14 @@
                  <div class="box1">
                      <h3>Total Parts Available </h3>
                    <span class="li_data"></span>
-                     <h3>60 units</h3>
+                     <h3>{totalPartsCounter} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
                   <div class="box1">
                      <h3>Total Bots Assembled</h3>
                    <span class="li_truck"></span>
-                     <h3>50 units</h3>
+                     <h3>{totalRobotsAssem} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
@@ -59,7 +60,6 @@
            </div>
             <!-- /row mt -->	
            <div class="row mt">
-              {robotParts}
                <div class="col-md-4 col-sm-4 mb">
                   <div class="white-panel pn">
                     <div class="white-header">
@@ -67,16 +67,49 @@
                      </div>
                      <div class="row">
                        <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Tops: 20</p>
+                           <p><i class="fa fa-heart"></i>Total Tops: {topPartsCounter}</p>
                         </div>
                        <div class="col-sm-6 col-xs-6"></div>
                      </div>
                    <div class="centered">
-                        <img src="assets/images/parts/{imageSrc}" title="{who}" width="120">
+                        <img src="assets/images/parts/{topImageSrc}" title="" width="120">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-4 mb">
+                  <div class="white-panel pn">
+                    <div class="white-header">
+                        <h5>Total Amount of Torse</h5>
+                     </div>
+                     <div class="row">
+                       <div class="col-sm-6 col-xs-6 goleft">
+                           <p><i class="fa fa-heart"></i>Total Tops: {torsoPartsCounter}</p>
+                        </div>
+                       <div class="col-sm-6 col-xs-6"></div>
+                     </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{torsoImageSrc}" title="" width="120">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-4 mb">
+                  <div class="white-panel pn">
+                    <div class="white-header">
+                        <h5>Total Amout of Bottom</h5>
+                     </div>
+                     <div class="row">
+                       <div class="col-sm-6 col-xs-6 goleft">
+                           <p><i class="fa fa-heart"></i>Total Bottom: {bottomPartsCounter}</p>
+                        </div>
+                       <div class="col-sm-6 col-xs-6"></div>
+                     </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{bottomImageSrc}" title="bottom" width="120">
                      </div>
                   </div>
                </div>
                {/robotParts}
+               
                <!-- /col-md-4 -->
               <div class="col-md-4 mb">
                  <!-- WHITE PANEL - TOP USER -->
@@ -114,7 +147,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/super.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/flash.jpg" class="img-circle" width="80"></p>
                      <p><b>Jimmy Wang</b></p>
                     <div class="col-md-6">
                        <p class="small mt">MEMBER SINCE</p>

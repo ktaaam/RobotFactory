@@ -1,6 +1,7 @@
 <?php
 class PartsModel extends CI_Model {
     var $catagory = array('top' => '1', 'torso' => '2', 'bottom' => '3');
+    
 
 	// Constructor
 	public function __construct()
@@ -21,7 +22,6 @@ class PartsModel extends CI_Model {
     // Get all parts that are the same catagory (i.e. top, torso, or bottom)
     public function get_catagory($cata){
 		$data = $this->db->get('parts')->result_array();
-
         $parts = array();
         foreach($data as $part)
             if($part['part_code'][1] == $this->catagory[$cata])

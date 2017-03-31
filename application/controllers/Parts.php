@@ -11,23 +11,26 @@ class Parts extends Application
 	}
 	public function index()
 	{
+        // variables to count the number of each part
+        
         // Loads the table library
         $this->load->library('table');
         // Sets the view body of the page
-        $this->data['pagebody'] ='Parts';        
+        $this->data['pagebody'] ='Parts';   
         // Retrive all parts from model
         $source = $this->PartsModel->all();     
-
+        
         foreach($source as $record){
             $record['part_pic'] = $record['part_code'] . ".jpeg";
             $record['part_model'] = strtoupper($record['part_code'][0]);
             $rows[] = $this->parser->parse('parts_row',(array)$record,true);
         }
 
+   
         $params = array
         (
-            'table_open' => '<table class="Parts">',
-            'row_start' => '<td class="test">',
+            'table_open'    => '<table class="Parts">',
+            'row_start'     => '<td class="test">',
             'row_alt_start' => '<td class="test">'
         );
 

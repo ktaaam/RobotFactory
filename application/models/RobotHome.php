@@ -5,11 +5,11 @@
  * so that we don't have to worry about any database setup.
  * This would be considered a "mock database" model.
  *
- * @author jim
+ * @author kevin
  */
 class RobotHome extends CI_Model {
 
-	
+	// The data in the dashboard to display the total amount of  xxx 
 	var $data = array(
 		array('id' => '1', 'who' => 'Head', 'imageSrc' => 'a1.jpeg'),
 		array('id' => '2', 'who' => 'Body', 'imageSrc' => 'a2.jpeg'),
