@@ -80,21 +80,30 @@ Release Date: 3/27/17
 Release Date: 3/30/17
 
 ## New Components
-
-## Updated Components
 - controllers
+    - Manage.php(DT)
+        can currently reboot plant and register new plants
     - Welcom(KT)
         -updated the welcome page to used models Parts, History, and robots
         in order to grab the assembled robots, how many parts in hand, how many bots sold
         -pulled the team balance and added to the dashboard      
-    
+
+- models
+    - ApikeyModel.php(DT)
+        Creates, Reads and Updates current apikey. Also is able to truncate
+        all tables except apikeys table.
+    - deleted robotHome as it decided that it was not neccessary to have (KT)
 - views
+    - _manage.php(DT)
+        diplays manage page for bosses
     - homepage.php(KT)
         - added 2 more boxes (torso,bottom) and updated the input to not be hard coded but
         to pull data from the database.
-- models
-    - deleted robotHome as it decided that it was not neccessary to have
-- config
-    
-- css
-   
+
+
+## Updated Components
+- db
+    - robot.sql(DT)
+        datebase dump now includes table for tracking apikeys
+
+
