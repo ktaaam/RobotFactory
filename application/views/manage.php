@@ -46,18 +46,18 @@
                                 url: '<?php echo base_url(); ?>' + 'Manage/Reboot',
                                 //dataType: 'JSON',
                                 success:function(response){
-                                    alert(response);
+                                    //console.log(response);
                                     if(response == 1){
-                                        alert('Plant Reset' + response);
+                                        alert('Plant Reset');
                                     }
                                     else{
-                                        alert('ERROR: Could not reboot plant' + response);
+                                        alert('ERROR: Could not reboot plant');
                                     }
-                                    //location.reload();
+                                    location.reload();
                                 },
                                 error:function(){
                                     alert('ERROR: Server could not process your request');
-                                    //location.reload();
+                                    location.reload();
                                 }
                         });
                     }
@@ -68,7 +68,7 @@
                     var pName = $('#plant_name').val();
                     var sToken = $('#secret_token').val();
                     if (pName != null && pName != "" && sToken != null && sToken != ""){
-                        console.log(pName+sToken);
+                        //console.log(pName+sToken);
                         $.ajax({
                                 type: 'POST',
                                 url: '<?php echo base_url(); ?>' + 'Manage/Register',

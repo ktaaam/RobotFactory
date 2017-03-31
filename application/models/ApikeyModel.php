@@ -12,6 +12,7 @@ class ApikeyModel extends CI_Model {
          * There should only be one key returned
          */
         public function getKey(){
+            $this->db->where('keyId',1);
             $data = $this->db->get('apikeys');
             return $data->result_array();
         }
@@ -32,6 +33,13 @@ class ApikeyModel extends CI_Model {
                 'apikey' => $key
             );
             $result = $this->db->insert('apikeys',$data);
+        }
+        
+        //deletes all records in the database
+        public function truncateDb(){
+            $this->db->truncate('history');
+            $this->db->truncate('parts');
+            $this->db->truncate('robots');
         }
 }
 

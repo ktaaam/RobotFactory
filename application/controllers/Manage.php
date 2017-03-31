@@ -23,11 +23,13 @@ class Manage extends Application
                 "verify_peer_name"=>false,
             ),
         ); 
-         $apiKey = $this->ApikeyModel->getKey('apikeys');
-         $response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key=2fed38',false, stream_context_create($context));
-         //$response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key='+$apiKey[0]['apikey'],false, stream_context_create($context));
+         $apiKey = $this->ApikeyModel->getKey();
+         $url = 'http://umbrella.jlparry.com/work/rebootme?key='.$apiKey[0]['apikey'];
+         $response = file_get_contents($url,false, stream_context_create($context));
+         //$response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key=2cc5e1',false, stream_context_create($context));
          $data = explode(" ",$response);
          if(strtolower($data[0])=="ok"){
+             $this->ApikeyModel->truncateDb();
              echo 1;//return ok
          }
          else{
@@ -50,7 +52,7 @@ class Manage extends Application
          $response = file_get_contents($url,false, stream_context_create($context));
          //$response = file_get_contents('https://umbrella.jlparry.com/work/registerme/papaya/247843',false, stream_context_create($context));
          $data = explode(" ",$response);
-         $key = $this->ApikeyModel->getKey('apikeys');
+         $key = $this->ApikeyModel->getKey();
          if(strtolower($data[0])=="ok"){//check if response is ok
             if(sizeof($key)>0){//check if a key exists in db
                $key = $data[1];//set response val as key
