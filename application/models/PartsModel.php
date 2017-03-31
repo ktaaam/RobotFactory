@@ -29,6 +29,13 @@ class PartsModel extends CI_Model {
         return $parts;
     }
 
+	// Delete parts from the database
+	public function delete($data){
+		$this->db->where_in('part_id', $data);
+		$res = $this->db->delete('parts');
+		return $res;
+	}
+
     // Get all parts
 	public function all()
 	{

@@ -2,15 +2,40 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // the menu basics (text navbar)
-$config['menu_choices'] = array(
-    'menudata' => array(
-        array('page' => 'Home', 'link' => '/'),
-        array('page' => 'Parts', 'link' => '/Parts'),
-        array('page' => 'Assembly', 'link' => '/Assembly'),
-        array('page' => 'History', 'link' => '/History'),
-        array('page' => 'About', 'link' => '/About'),
-        )
-    );
+//$config['menu_boss'] = array(
+//    'menudata' => array(
+//        array('page' => 'Home', 'link' => '/'),
+//        array('page' => 'Parts', 'link' => '/Parts'),
+//        array('page' => 'Assembly', 'link' => '/Assembly'),
+//        array('page' => 'History', 'link' => '/History'),
+//        array('page' => 'Manage', 'link' => '/Manage'),
+//        array('page' => 'About', 'link' => '/About'),
+//        )
+//    );
+//
+//$config['menu_guest'] = array(
+//    'menudata' => array(
+//        array('page' => 'Home', 'link' => '/'),
+//        array('page' => 'About', 'link' => '/About'),
+//        )
+//    );
+//
+//$config['menu_supervisor'] = array(
+//    'menudata' => array(
+//        array('page' => 'Home', 'link' => '/'),
+//        array('page' => 'Parts', 'link' => '/Parts'),
+//        array('page' => 'Assembly', 'link' => '/Assembly'),
+//        array('page' => 'About', 'link' => '/About'),
+//        )
+//    );
+//
+//$config['menu_worker'] = array(
+//    'menudata' => array(
+//        array('page' => 'Home', 'link' => '/'),
+//        array('page' => 'Parts', 'link' => '/Parts'),
+//        array('page' => 'About', 'link' => '/About'),
+//        )
+//    );
 
 /*
 |--------------------------------------------------------------------------
@@ -381,7 +406,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+//$config['sess_save_path'] = 'ci_sessions'; //path for where the session data is saved
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
