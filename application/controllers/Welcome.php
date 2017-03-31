@@ -8,24 +8,73 @@ class Welcome extends Application
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('PartsModel');
+		$this->load->model('RobotsModel');
+		$this->load->model('HistoryModel');
+
 	}
 
 	/**
 	 * Homepage for our app
 	 */
 	public function index()
-	{
-		// this is the view we want shown
-		$this->data['pagebody'] = 'homepage';
+	{    
+		$topPartsCounter    = 0;
+        $bottomPartsCounter = 0;
+        $torsoPartsCounter  = 0;
+        $totalParts         = 0;
+        $totalRobotsAssem   = 0;
+        $totalBotsSold      = 0;
+        $totalBotsBought    = 0;
 
-		// build the list of authors, to pass on to our view
-		$source = $this->quotes->all();
-		$authors = array ();
+        $this->data['pagebody'] = 'homepage'; 
+		// build the list of parts, to pass on to our view
+		$source = $this->PartsModel->all();
+		$robots = $this->RobotsModel->all();
+		$history = $this->HistoryModel->all();
+		$robotPart = array ();
 		foreach ($source as $record)
 		{
-			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
+			//if the part has a 1 add 1 to the top counter
+            if($record['part_code'][1] == "1"){
+                $topPartsCounter = $topPartsCounter + 1;
+            //if the part has a 3 add  1 to the bottom counter
+            }else if($record['part_code'][1] == "3"){
+                $bottomPartsCounter = $bottomPartsCounter + 1;
+            // if the part has a 2 add 1 to the torso counter
+            }else if($record['part_code'][1] == "2"){
+                $torsoPartsCounter = $torsoPartsCounter + 1;
+            }
+
+            $totalParts = $totalParts + 1;
 		}
-		$this->data['authors'] = $authors;
+
+		foreach($robots as $record)
+		{
+			$totalRobotsAssem = $totalRobotsAssem + 1;
+		}
+
+		foreach($history as $record)
+		{
+			if($record['purchaseType'] == "sell"){
+				$totalBotsSold = $totalBotsSold + 1;
+			}else if($record['purchaseType'] == "buy"){
+				$totalBotsBought = $totalBotsBought + 1;
+			}
+		}
+		$response = file_get_contents('https://umbrella.jlparry.com/info/balance/papaya');
+		$robotPart[] = array('totalPartsCounter' => $totalParts, 
+                            'topPartsCounter'    => $topPartsCounter, 
+                            'torsoPartsCounter'  => $torsoPartsCounter, 
+                            'bottomPartsCounter' => $bottomPartsCounter,
+                            'totalRobotsAssem'   => $totalRobotsAssem,
+                            'topImageSrc'        => 'a1.jpeg',
+                            'torsoImageSrc'      => 'a2.jpeg',
+                            'bottomImageSrc'     => 'a3.jpeg',
+                            'balance'            => $response,
+                            'totalBotsSold'      => $totalBotsSold,
+                            'totalBotsBought'    => $totalBotsBought);
+		$this->data['robotParts'] = $robotPart;
 
 		$this->render();
 	}
