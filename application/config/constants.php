@@ -83,3 +83,15 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*
+ * Definition for user roles
+ * Boss: Is the boss of the factory
+ * Superivisor: Supervisors in the factory
+ * Worker: Worker in the factory
+ * Customer: A customer buying robots
+ */
+defined('ROLE_BOSS') OR define('ROLE_BOSS', 'Boss');
+defined('ROLE_SUPERVISOR') OR define('ROLE_SUPERVISOR', 'Supervisor');
+defined('ROLE_WORKER') OR define('ROLE_WORKER', 'Worker');
+defined('ROLE_GUEST') OR define('ROLE_GUEST', 'Guest');

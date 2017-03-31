@@ -30,30 +30,38 @@
             <div class="row mtbox">
                <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   <div class="box1">
-                     <h3>Total Amount Spent</h3>
+                     {robotParts}
+                     <h3>Total Assembled Bots Sold </h3>
                      <span class="li_banknote"></span>
-                     <h3>$5000</h3>
+                     <h3>{totalBotsSold} units</h3>
+                  </div>
+               </div>
+               <div class="col-md-2 col-sm-2 box0">
+                  <div class="box1">
+                     <h3>Total Bots Purchased </h3>
+                     <span class="li_shop"></span>
+                     <h3>{totalBotsBought} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
                  <div class="box1">
                      <h3>Total Parts Available </h3>
                    <span class="li_data"></span>
-                     <h3>60 units</h3>
+                     <h3>{totalPartsCounter} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
                   <div class="box1">
                      <h3>Total Bots Assembled</h3>
                    <span class="li_truck"></span>
-                     <h3>50 units</h3>
+                     <h3>{totalRobotsAssem} units</h3>
                   </div>
                </div>
                <div class="col-md-2 col-sm-2 box0">
                   <div class="box1">
-                    <h3>Total Amount Earned</h3>
+                    <h3>Total Balance Amount</h3>
                      <span class="li_vallet"></span>
-                     <h3>$5000</h3>
+                     <h3>${balance}</h3>
                   </div>
                </div>
            </div>
@@ -62,51 +70,53 @@
                <div class="col-md-4 col-sm-4 mb">
                   <div class="white-panel pn">
                     <div class="white-header">
-                        <h5>Total amount of Heads</h5>
+                        <h5>Total amount of Tops</h5>
                      </div>
                      <div class="row">
                        <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Heads: 20</p>
+                           <p><i class="fa fa-heart"></i>Total Tops: {topPartsCounter}</p>
                         </div>
                        <div class="col-sm-6 col-xs-6"></div>
                      </div>
                    <div class="centered">
-                        <img src="assets/pix/a1.png" width="120">
+                        <img src="assets/images/parts/{topImageSrc}" title="" width="120">
                      </div>
                   </div>
                </div>
                <div class="col-md-4 col-sm-4 mb">
                   <div class="white-panel pn">
                     <div class="white-header">
-                        <h5>Total amount of Bodys</h5>
+                        <h5>Total Amount of Torse</h5>
                      </div>
                      <div class="row">
-                        <div class="col-sm-6 col-xs-6 goleft">
-                          <p><i class="fa fa-heart"></i>Total Bodies: 20</p>
+                       <div class="col-sm-6 col-xs-6 goleft">
+                           <p><i class="fa fa-heart"></i>Total Tops: {torsoPartsCounter}</p>
                         </div>
-                        <div class="col-sm-6 col-xs-6"></div>
-                    </div>
-                    <div class="centered">
-                        <img src="assets/pix/a2.png" width="120">
-                    </div>
+                       <div class="col-sm-6 col-xs-6"></div>
+                     </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{torsoImageSrc}" title="" width="120">
+                     </div>
                   </div>
                </div>
                <div class="col-md-4 col-sm-4 mb">
                   <div class="white-panel pn">
-                     <div class="white-header">
-                        <h5>Total amount of Legs</h5>
+                    <div class="white-header">
+                        <h5>Total Amout of Bottom</h5>
                      </div>
                      <div class="row">
                        <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Legs: 20</p>
-                       </div>
-                        <div class="col-sm-6 col-xs-6"></div>
+                           <p><i class="fa fa-heart"></i>Total Bottom: {bottomPartsCounter}</p>
+                        </div>
+                       <div class="col-sm-6 col-xs-6"></div>
                      </div>
-                     <div class="centered">
-                       <img src="assets/pix/a1.png" width="120">
-                   </div>
-                 </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{bottomImageSrc}" title="bottom" width="120">
+                     </div>
+                  </div>
                </div>
+               {/robotParts}
+               
                <!-- /col-md-4 -->
               <div class="col-md-4 mb">
                  <!-- WHITE PANEL - TOP USER -->
@@ -114,7 +124,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/batman.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/bat.jpg" class="img-circle" width="80"></p>
                      <p><b>Kevin Tam</b></p>
                     <div class="col-md-6">
                        <p class="small mt">MEMBER SINCE</p>
@@ -129,7 +139,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/wonderwoman.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/wonder.jpg" class="img-circle" width="80"></p>
                      <p><b>Alex Bai</b></p>
                     <div class="col-md-6">
                         <p class="small mt">MEMBER SINCE</p>
@@ -144,7 +154,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                      </div>
-                     <p><img src="assets/img/superman.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/flash.jpeg" class="img-circle" width="80"></p>
                      <p><b>Jimmy Wang</b></p>
                     <div class="col-md-6">
                        <p class="small mt">MEMBER SINCE</p>
@@ -159,7 +169,7 @@
                      <div class="white-header">
                         <h5>Developer</h5>
                     </div>
-                     <p><img src="assets/img/cyborg.jpg" class="img-circle" width="80"></p>
+                     <p><img src="assets/img/green.jpg" class="img-circle" width="80"></p>
                      <p><b>Dallas Tang</b></p>
                      <div class="col-md-6">
                         <p class="small mt">MEMBER SINCE</p>
