@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2017 at 07:51 AM
+-- Generation Time: Mar 31, 2017 at 02:22 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -19,21 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `robot`
 --
-CREATE DATABASE IF NOT EXISTS `robot` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `robot`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ci_sessions`
+-- Table structure for table `apikeys`
 --
 
-CREATE TABLE `ci_sessions` (
-  `id` varchar(128) NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `data` blob NOT NULL
+CREATE TABLE `apikeys` (
+  `keyId` int(32) NOT NULL DEFAULT '1',
+  `apikey` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `apikeys`
+--
 
 -- --------------------------------------------------------
 
@@ -117,11 +117,10 @@ INSERT INTO `robots` (`robot_id`, `top`, `torso`, `bottom`) VALUES
 --
 
 --
--- Indexes for table `ci_sessions`
+-- Indexes for table `apikeys`
 --
-ALTER TABLE `ci_sessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+ALTER TABLE `apikeys`
+  ADD PRIMARY KEY (`keyId`);
 
 --
 -- Indexes for table `history`
@@ -145,6 +144,11 @@ ALTER TABLE `robots`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `apikeys`
+--
+ALTER TABLE `apikeys`
+  MODIFY `keyId` int(32) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `history`
 --
