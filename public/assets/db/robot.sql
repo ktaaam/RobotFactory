@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `apikeys` (
-  `keyId` int(32) UNSIGNED NOT NULL,
+  `keyId` int(32) NOT NULL DEFAULT '1',
   `apikey` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
