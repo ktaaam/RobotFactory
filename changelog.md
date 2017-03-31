@@ -74,3 +74,35 @@ Release Date: 3/27/17
 - css
     - style.css(JW)
         fixed warning box behavior
+
+## *Version 2.3*
+
+Release Date: 3/30/17
+
+## New Components
+- controllers
+    - Manage.php(DT)
+        can currently reboot plant and register new plants
+
+- models
+    - ApikeyModel.php(DT)
+        Creates, Reads and Updates current apikey. Also is able to truncate
+        all tables except apikeys table.
+- views
+    - _manage.php(DT)
+        diplays manage page for bosses
+
+## Updated Components
+- db
+    - robot.sql(DT)
+        datebase dump now includes table for tracking apikeys
+
+## *Version 2.5*
+
+Release Date: 3/30/17
+
+## Updated Components
+- controllers
+    - Parts(JW)
+        added funtionalities to 'build' and 'buy'
+        uses API key from the database to retrieve live data from the umbrella server
