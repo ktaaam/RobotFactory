@@ -29,7 +29,9 @@ class ApikeyModel extends CI_Model {
         
         // inserts a new key
         public function addKey($key){
+            $this->db->truncate('apikeys');
             $data = array(
+                'keyId' => 1,
                 'apikey' => $key
             );
             $result = $this->db->insert('apikeys',$data);
