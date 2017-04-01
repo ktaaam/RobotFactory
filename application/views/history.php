@@ -10,21 +10,27 @@
                   <th>Parts ID</th>
                   <th>Shipment ID</th>
                   <th>Date</th>
-                  <th>Time</th>
+					
                </tr>
                {history}
+			  
                <tr>
+				
                   <td>{transID}</td>
                   <td>{purchaseType}</td>
                   <td>{robotID}</td>
                   <td>{partsID}</td>
                   <td>{shipmentID}</td>
                   <td>{date}</td>
-                  <td>{time}</td>
+				
                </tr>
-               {/history}		
+			   
+               {/history}	
             </table>
+			<input type="checkbox" name="dateSort" value="dateSort">Sort by date<br>
+			<input type="checkbox" name="robotMSort" value="robotMSort">Sort by robot model<br>
          </div>
+		 <?php echo $this->pagination->create_links(); ?>
       </div>
    </section>
 </section>
