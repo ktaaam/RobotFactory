@@ -2,6 +2,7 @@
    <section class="wrapper">
       <div class="col-lg-9 main-chart">      
         <h2>Parts</h2>    
+<<<<<<< HEAD
         <button>Build More Parts</button>  
         <button>Buy Parts</button>
         <table class="table table-striped">
