@@ -28,22 +28,7 @@ class Parts extends Application
                         $rows[] = $this->parser->parse('parts_row',(array)$record,true);
                     }
 
-                    // Sets table template
-                    $params = array
-                    (
-                        'table_open' => '<table class="Parts">',
-                        'row_start' => '<td class="test">',
-                        'row_alt_start' => '<td class="test">'
-                    );
-
-                    // Generates table
-                    $this->table->set_template($params);
-
-                    
-                    $rows = $this->table->make_columns($rows,5);
-                    $this->data['partsTable'] = $this->table->generate($rows);
-                }
-<<<<<<< HEAD
+     
                 // Sets table template
                 $params = array
                 (
@@ -55,16 +40,14 @@ class Parts extends Application
                 $this->table->set_template($params);
                 $rows = $this->table->make_columns($rows,5);
                 $this->data['partsTable'] = $this->table->generate($rows);
-=======
-
->>>>>>> cb6b9c803b5715fa8ca91fba0e19f818dfb31470
                 $this->render();      
             }       
             else{
                 redirect('Welcome');
             }
-        }   
-    public function build(){
+        }
+    }   
+        public function build(){
         // Get API key from database
         $key = $this->apikeymodel->getKey()[0]['apikey'];
         if($key != null){
