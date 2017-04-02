@@ -23,15 +23,11 @@ class Assembly extends Application {
             $torso = $this->PartsModel->get_catagory('torso');
             $bottom = $this->PartsModel->get_catagory('bottom');
 
-            // Gets all robots
-            $robots = $this->RobotsModel->all();
-
             // Set data
             $this->data['parts'] = $parts;
             $this->data['top'] = $top;
             $this->data['torso'] = $torso;
             $this->data['bottom'] = $bottom;
-            $this->data['robots'] = $robots;
 
             $this->data['pagebody'] = 'assembly'; 
             $this->render();
@@ -52,13 +48,13 @@ class Assembly extends Application {
 
             // Check for any null or invalid inputs
             if($top != null && $torso != null && $bottom != null && $top[0]['part_code'][1] == '1' && $torso[0]['part_code'][1] == '2' && $bottom[0]['part_code'][1] == '3' ){
+                // Insert robot with part infomation 
+                $data = array('top' => $top[0]['part_code'], 'torso' => $torso[0]['part_code'], 'bottom' => $bottom[0]['part_code'], 'top_ca' => $top[0]['part_ca'], 'torso_ca' => $torso[0]['part_ca'], 'bottom_ca' => $bottom[0]['part_ca']);                
+                $res = $this->RobotsModel->build($data);
+
                 // Deletes input parts from database
                 $parts = array($this->input->post('top'),$this->input->post('torso'),$this->input->post('bottom'));
                 $this->PartsModel->delete($parts);
-
-                // Insert robot with part infomation 
-                $data = array('top' => $top[0]['part_code'], 'torso' => $torso[0]['part_code'], 'bottom' => $bottom[0]['part_code']);                
-                $res = $this->RobotsModel->build($data);
                 
                 // Return response
                 echo $res;  
