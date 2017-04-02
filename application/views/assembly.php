@@ -103,38 +103,9 @@
             <div class="alert alert-danger" id="database_warning" style="display:none">
                <strong>Database Error, Please try again later!</strong>
             </div>
-            <button id="build_btn">Build</button>
-            <!--List of all robots-->
-            <div id="robots">
-               <h2>List of all robots</h2>
-               <div class="large_scrollbar">
-                  <table id="robots_table" class="table table-hover">
-                     <tr>
-                        <th></th>
-                        <th>Robot Top</th>
-                        <th>Robot Torso</th>
-                        <th>Robot Bottom</th>
-                     </tr>
-                     {robots}
-                     <tr>
-                        <td><input name="robots_check" type="checkbox" /></td>
-                        <td>{top}</td>
-                        <td>{torso}</td>
-                        <td>{bottom}</td>
-                     </tr>
-                     {/robots}
-                  </table>
-               </div>
-               <button>Sell Selected</button><button id="robots_select">Select All</button>
-            </div>
+            <button id="build_btn">Build</button>            
             <script>
                $(document).ready(function(){
-                   // Select all toggle
-                   $('#robots_select').click(function(){
-                       var checkbox = $('input[name=robots_check]');
-                       checkbox.prop('checked',!checkbox.prop('checked'));
-                   });
-
                    // Select all toggle
                    $('#parts_select').click(function(){
                        var checkbox = $('input[name=parts_check]');

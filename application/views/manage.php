@@ -4,7 +4,26 @@
             <div id="content">
                 <h1>Console</h1>
                 <div name="sell_parts">
-                    
+                    <h3>List of all robots</h3>
+                    <div class="large_scrollbar">
+                       <table id="robots_table" class="table table-hover">
+                          <tr>
+                             <th></th>
+                             <th>Robot Top</th>
+                             <th>Robot Torso</th>
+                             <th>Robot Bottom</th>
+                          </tr>
+                          {robots}
+                          <tr>
+                             <td><input name="robots_check" type="checkbox" id="{robot_id}"/></td>
+                             <td>{top}</td>
+                             <td>{torso}</td>
+                             <td>{bottom}</td>
+                          </tr>
+                          {/robots}
+                       </table>
+                    </div>
+                    <button id="robots_sell">Sell Selected</button><button id="robots_select">Select All</button>
                 </div>
                 
                 <div name="PCR_registration">
@@ -14,13 +33,13 @@
                             <td>Plant Name:</td>
                         </tr>
                         <tr>
-                            <td><input type="texr" id="plant_name" required></td>
+                            <td><input type="text" id="plant_name" required></td>
                         </tr>
                         <tr>
                             <td>Secret Token:</td>
                         </tr>
                         <tr>
-                            <td><input type="texr" id="secret_token" required></td>
+                            <td><input type="text" id="secret_token" required></td>
                         </tr>
                         <tr>
                             <td><button id="btn_register">Register</button></td>
@@ -34,7 +53,13 @@
             </div>
             <script>
             $(document).ready(function(){
-                var newURL = window.location.protocol + "//" + window.location.host;
+                // Select all toggle
+                $('#robots_select').click(function(){
+                    var checkbox = $('input[name=robots_check]');
+                    checkbox.prop('checked',!checkbox.prop('checked'));
+                });
+                
+                //var newURL = window.location.protocol + "//" + window.location.host;
                 
                 //reboots factory
                 $('#btn_reboot').click(function(){
@@ -92,6 +117,36 @@
                     }
                 });
             });
+
+            $('#robots_sell').click(function(){
+                var robot_arr = [];
+
+                $("input[name='robots_check']").each(function(){
+                    if(this.checked == true){
+                        robot_arr.push(this.id);
+                    }
+                });
+
+                if(robot_arr.length != 0){
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo base_url(); ?>' + 'Manage/Sell',
+                        dataType: 'JSON',
+                        data:{id: robot_arr},
+                        success: function(data){
+                            if(data['status'] === 'Ok')
+                                alert('Robot(s) successfully sold');
+                            else
+                                alert('ERROR: Robots not sold');
+                        },
+                        error: function(){
+                             alert('ERROR: Invalid Key');
+                        }
+                    });
+
+                    location.reload();
+                }
+            })
 
             </script>
             <!--end content-->

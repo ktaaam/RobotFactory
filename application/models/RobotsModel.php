@@ -32,4 +32,10 @@ class RobotsModel extends CI_Model {
 		return $data->result_array();
 	}
 
+	// Deletes a robot from db
+	public function remove($which){
+		$this->db->where_in('robot_id', $which);
+		$res = $this->db->delete('robots');
+		return $res;
+	}
 }
