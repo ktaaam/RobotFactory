@@ -115,15 +115,15 @@ class Manage extends Application
          $response = file_get_contents($url,false, stream_context_create($context));
          //$response = file_get_contents('https://umbrella.jlparry.com/work/registerme/papaya/247843',false, stream_context_create($context));
          $data = explode(" ",$response);
-         $key = $this->ApikeyModel->getKey();
+         $key = $this->apikeymodel->getKey();
          if(strtolower($data[0])=="ok"){//check if response is ok
             if(sizeof($key)>0){//check if a key exists in db
                $key = $data[1];//set response val as key
-               $this->ApikeyModel->updateKey($key);
+               $this->apikeymodel->updateKey($key);
             }
             else{//a key does not exist in db
                $key = $data[1];
-               $this->ApikeyModel->addKey($key);
+               $this->apikeymodel->addKey($key);
             }
             echo 1;//return ok
          }
