@@ -23,15 +23,11 @@ class Assembly extends Application {
             $torso = $this->PartsModel->get_catagory('torso');
             $bottom = $this->PartsModel->get_catagory('bottom');
 
-            // Gets all robots
-            $robots = $this->RobotsModel->all();
-
             // Set data
             $this->data['parts'] = $parts;
             $this->data['top'] = $top;
             $this->data['torso'] = $torso;
             $this->data['bottom'] = $bottom;
-            $this->data['robots'] = $robots;
 
             $this->data['pagebody'] = 'assembly'; 
             $this->render();

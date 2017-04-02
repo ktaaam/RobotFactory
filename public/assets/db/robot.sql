@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `apikeys`
 --
 
-CREATE TABLE `apikeys` (
+CREATE TABLE IF NOT EXISTS `apikeys` (
   `keyId` int(32) NOT NULL DEFAULT '1',
   `apikey` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,7 +41,7 @@ CREATE TABLE `apikeys` (
 -- Table structure for table `history`
 --
 
-CREATE TABLE `history` (
+CREATE TABLE IF NOT EXISTS `history` (
   `transID` int(11) NOT NULL,
   `purchaseType` varchar(10) NOT NULL,
   `robotId` int(11) DEFAULT NULL,
@@ -86,7 +86,7 @@ INSERT INTO `history` (`transID`, `purchaseType`, `robotId`, `partsId`, `shipmen
 -- Table structure for table `parts`
 --
 
-CREATE TABLE `parts` (
+CREATE TABLE IF NOT EXISTS `parts` (
   `part_id` int(11) NOT NULL,
   `part_code` char(2) NOT NULL,
   `part_ca` varchar(20) NOT NULL,
@@ -112,7 +112,7 @@ INSERT INTO `parts` (`part_id`, `part_code`, `part_ca`, `built_at`, `date_built`
 -- Table structure for table `robots`
 --
 
-CREATE TABLE `robots` (
+CREATE TABLE IF NOT EXISTS `robots` (
   `robot_id` int(11) NOT NULL,
   `top` char(2) NOT NULL,
   `torso` char(2) NOT NULL,

@@ -4,7 +4,26 @@
             <div id="content">
                 <h1>Console</h1>
                 <div name="sell_parts">
-                    
+                    <h3>List of all robots</h3>
+                    <div class="large_scrollbar">
+                       <table id="robots_table" class="table table-hover">
+                          <tr>
+                             <th></th>
+                             <th>Robot Top</th>
+                             <th>Robot Torso</th>
+                             <th>Robot Bottom</th>
+                          </tr>
+                          {robots}
+                          <tr>
+                             <td><input name="robots_check" type="checkbox" /></td>
+                             <td>{top}</td>
+                             <td>{torso}</td>
+                             <td>{bottom}</td>
+                          </tr>
+                          {/robots}
+                       </table>
+                    </div>
+                    <button>Sell Selected</button><button id="robots_select">Select All</button>
                 </div>
                 
                 <div name="PCR_registration">
@@ -34,7 +53,15 @@
             </div>
             <script>
             $(document).ready(function(){
-                var newURL = window.location.protocol + "//" + window.location.host;
+                   // Select all toggle
+                   $('#robots_select').click(function(){
+                       var checkbox = $('input[name=robots_check]');
+                       checkbox.prop('checked',!checkbox.prop('checked'));
+                   });
+                
+                
+                
+                //var newURL = window.location.protocol + "//" + window.location.host;
                 
                 //reboots factory
                 $('#btn_reboot').click(function(){
