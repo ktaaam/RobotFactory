@@ -71,6 +71,8 @@ class HistoryModel extends CI_Model {
 		return $data->result_array();
 	}
 	
+	//sorts date in descending fashion
+	
 	public function dateSort()
 	{
 		
@@ -120,6 +122,7 @@ class HistoryModel extends CI_Model {
 		return $query->result_array();
 	}
 	
+	//sorts by robot id is descending fashion
 	function robotIDSort(){
 
 		
