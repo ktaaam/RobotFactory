@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2017 at 01:31 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Mar 31, 2017 at 02:22 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `robot`
 --
-CREATE DATABASE IF NOT EXISTS `robot` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `robot`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apikeys`
+--
+
+CREATE TABLE `apikeys` (
+  `keyId` int(32) NOT NULL DEFAULT '1',
+  `apikey` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `apikeys`
+--
 
 -- --------------------------------------------------------
 
@@ -28,7 +41,6 @@ USE `robot`;
 -- Table structure for table `history`
 --
 
-DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history` (
   `transID` int(11) NOT NULL,
   `purchaseType` varchar(10) NOT NULL,
@@ -74,7 +86,6 @@ INSERT INTO `history` (`transID`, `purchaseType`, `robotId`, `partsId`, `shipmen
 -- Table structure for table `parts`
 --
 
-DROP TABLE IF EXISTS `parts`;
 CREATE TABLE `parts` (
   `part_id` int(11) NOT NULL,
   `part_code` char(2) NOT NULL,
@@ -101,7 +112,6 @@ INSERT INTO `parts` (`part_id`, `part_code`, `part_ca`, `built_at`, `date_built`
 -- Table structure for table `robots`
 --
 
-DROP TABLE IF EXISTS `robots`;
 CREATE TABLE `robots` (
   `robot_id` int(11) NOT NULL,
   `top` char(2) NOT NULL,
@@ -125,6 +135,12 @@ INSERT INTO `robots` (`robot_id`, `top`, `torso`, `bottom`) VALUES
 --
 
 --
+-- Indexes for table `apikeys`
+--
+ALTER TABLE `apikeys`
+  ADD PRIMARY KEY (`keyId`);
+
+--
 -- Indexes for table `history`
 --
 ALTER TABLE `history`
@@ -146,6 +162,11 @@ ALTER TABLE `robots`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `apikeys`
+--
+ALTER TABLE `apikeys`
+  MODIFY `keyId` int(32) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `history`
 --

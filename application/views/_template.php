@@ -59,7 +59,7 @@
      $(document).ready(function () {
      var unique_id = $.gritter.add({
        // (string | mandatory) the heading of the notification
-       title: 'Welcome to Dashgum!',
+       
        // (string | mandatory) the text inside the notification
        text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
        // (string | optional) the image to display on the left
@@ -118,7 +118,8 @@
              <div class="navbar">
                  <div class="navbar-inner">
                      <a class="brand" href="/"><img src="/assets/images/logo.png"/></a>
-                     {menubar} </div>
+                     {menubar} 
+                  </div>
              </div>           
              <div id="content">
             <h1>{title}</h1>
