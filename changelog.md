@@ -106,4 +106,30 @@ Release Date: 3/30/17
     - robot.sql(DT)
         datebase dump now includes table for tracking apikeys
 
+## *Version 2.4*
+
+Release Date: 4/1/17
+
+## Updated Components
+- controllers
+    - Parts(JW)
+        added funtionalities to 'build' and 'buy'
+        uses API key from the database to retrieve live data from the umbrella server
+
+## *Version 2.5*
+
+Release Date: 4/2/17
+
+## Updated Components
+- controllers
+    - Welcome(KT)
+        added a new recently built feature to the home page 
+        loop through the robot record and find the parts of the last 3 recently built robots
+    - Parts(KT)
+        added css to the table for the parts view
+- View
+    - Homepage(KT)
+        added the html for the recently built robots
+
+
 
