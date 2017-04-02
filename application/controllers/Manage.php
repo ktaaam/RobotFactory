@@ -8,9 +8,13 @@ class Manage extends Application
 	{
             parent::__construct();
             $this->load->model('ApikeyModel');
+            $this->load->model('RobotsModel');
         }
      public function index()
      {
+         // Gets all robots
+         $robots = $this->RobotsModel->all();
+         $this->data['robots'] = $robots;
          $this->data['pagebody'] ='Manage';
          $this->render();  
      }
