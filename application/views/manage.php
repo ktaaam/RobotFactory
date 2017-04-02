@@ -15,7 +15,7 @@
                           </tr>
                           {robots}
                           <tr>
-                             <td><input name="robots_check" type="checkbox" /></td>
+                             <td><input name="robots_check" type="checkbox" id="{robot_id}"/></td>
                              <td>{top}</td>
                              <td>{torso}</td>
                              <td>{bottom}</td>
@@ -23,7 +23,7 @@
                           {/robots}
                        </table>
                     </div>
-                    <button>Sell Selected</button><button id="robots_select">Select All</button>
+                    <button id="robots_sell">Sell Selected</button><button id="robots_select">Select All</button>
                 </div>
                 
                 <div name="PCR_registration">
@@ -53,13 +53,11 @@
             </div>
             <script>
             $(document).ready(function(){
-                   // Select all toggle
-                   $('#robots_select').click(function(){
-                       var checkbox = $('input[name=robots_check]');
-                       checkbox.prop('checked',!checkbox.prop('checked'));
-                   });
-                
-                
+                // Select all toggle
+                $('#robots_select').click(function(){
+                    var checkbox = $('input[name=robots_check]');
+                    checkbox.prop('checked',!checkbox.prop('checked'));
+                });
                 
                 //var newURL = window.location.protocol + "//" + window.location.host;
                 
@@ -119,6 +117,39 @@
                     }
                 });
             });
+
+            $('#robots_sell').click(function(){
+                var robot_arr = [];
+
+                $("input[name='robots_check']").each(function(){
+                    if(this.checked == true){
+                        robot_arr.push(this.id);
+                    }
+                });
+
+                if(flag){
+                    $.ajax({
+                            type: 'POST',
+                            url: '<?php echo base_url(); ?>' + 'Manage/Sell',
+                            dataType: 'JSON',
+                            data:{id: robot_arr},
+                            success:function(response){
+                                //alert(response);
+                                // if (response==1){
+                                //     alert('Plant Registerd');
+                                // }
+                                // else{
+                                //     alert('Invalid factory name or token given');
+                                // }
+                                // location.reload();
+                            },
+                            error:function(){
+                                // alert('ERROR: Server could not process your request');
+                                // location.reload();
+                            }
+                        });
+                }
+            })
 
             </script>
             <!--end content-->

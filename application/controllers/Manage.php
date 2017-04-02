@@ -40,6 +40,46 @@ class Manage extends Application
             echo 0;//return error
          }
      }
+
+     public function sell(){
+         $key = $this->apikeymodel->getKey()[0]['apikey'];
+
+        if($key != null){
+            $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+                ),
+            ); 
+
+            // Get json response from REST API
+            $response = file_get_contents('https://umbrella.jlparry.com/work/mybuilds?key=' . $key, false, stream_context_create($arrContextOptions));
+            $data = json_decode($response);
+
+            // Check if any parts were actually built
+            if($data != null){
+                $output = array();
+                $i = 0;
+
+                // Store parts data into an array
+                foreach($data as $record){
+                    $output[$i]['part_ca'] = $record->{'id'};
+                    $output[$i]['part_code'] = $record->{'model'} . $record->{'piece'};
+                    $output{$i}['built_at'] = $record->{'plant'};
+                    $output{$i}['date_built'] = $record->{'stamp'};
+                    $i++;            
+                }
+
+                // Insert built parts into the database
+                $res = $this->partsmodel->insert($output);
+            }
+
+            redirect('Parts');
+        }
+        else{
+            redirect('Parts');
+        } 
+     }
      
      //register factory with server
      public function register(){
