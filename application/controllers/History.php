@@ -32,42 +32,14 @@ class History extends Application
 			$this->render();
 			
         } 
-	/**
-	public function viewParts()
-	{
-		
-		$data['query'] = $this->historymodel->viewParts();   
-		$this->load->view('history', $data);
-	}
-	**/
-	
-	/**
-	 public function sorting()
-	 {
-		$data = $this->input->post('chkbox');
-		if($data == "dateSort") {
-			//$this->db->select()->from('history')->order_by('shipmentDate', 'desc');
-			$res = $this->historymodel->dateSort();
-			
-			//var_dump($res);
-			
-		}
-		else if($data == "robotIDSort") {
-			
-		}
-	   
-	 }
-	 **/
+
 	 
 	    public function dateSort() { 
            
 			
 			
-			// build the list of authors, to pass on to our view
+			// build the array to pass to view
 			$dates = $this->historymodel->dateSort();
-			
-			//var_dump($source);
-			//$this->load->view('history', $source)
 		
 			
 			$history = array();
@@ -89,7 +61,7 @@ class History extends Application
            
 			
 			
-			// build the list of authors, to pass on to our view
+			// build the array to pass to view
 			$robot = $this->historymodel->robotIDSort();
 			
 			//var_dump($source);
