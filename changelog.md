@@ -131,3 +131,15 @@ Release Date: 4/2/17
 - History Controller (AB)
 	-handles different inputs accordingly following pagination template
 	-added commenting to clarify program flow.
+
+## *Version 2.5*
+
+Release Date: 4/2/17
+
+## Updated Components
+- controllers
+    - Parts(JW)
+        added funtionalities to 'build' and 'buy'
+        uses API key from the database to retrieve live data from the umbrella server
+    - Manage(JW)
+        added funtionalities to Sell robots
