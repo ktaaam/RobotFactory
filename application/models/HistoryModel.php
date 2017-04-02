@@ -64,10 +64,11 @@ class HistoryModel extends CI_Model {
 		
 		return $query->result_array();
 	}
-		// retrieve all of the data
+	// retrieve all of the data
 	public function all()
 	{
-		return $this->data;
+		$data = $this->db->get('history');
+		return $data->result_array();
 	}
 	
 	public function dateSort()
