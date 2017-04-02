@@ -27,6 +27,7 @@
   <section class="wrapper">
       <div class="row">
          <div class="col-lg-9 main-chart">
+            <!-- SUMMARY SECTION -->
             <div class="row mtbox">
                <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   <div class="box1">
@@ -65,6 +66,9 @@
                   </div>
                </div>
            </div>
+          <!-- SUMMARY SECTION HAS ENDED -->
+
+            <!-- COUNTED PARTS SECTION-->
             <!-- /row mt -->	
            <div class="row mt">
                <div class="col-md-4 col-sm-4 mb">
@@ -90,7 +94,7 @@
                      </div>
                      <div class="row">
                        <div class="col-sm-6 col-xs-6 goleft">
-                           <p><i class="fa fa-heart"></i>Total Tops: {torsoPartsCounter}</p>
+                           <p><i class="fa fa-heart"></i>Total Torso: {torsoPartsCounter}</p>
                         </div>
                        <div class="col-sm-6 col-xs-6"></div>
                      </div>
@@ -116,7 +120,34 @@
                   </div>
                </div>
                {/robotParts}
-               
+               <!-- COUNTED PARTS SECTION HAD ENDED -->
+
+               <!-- RECENTLY BUILT ROBOT SECTION -->
+               {recentRobots}
+               <div class="col-md-4 col-sm-4 mb">
+                  <div class="white-panel pn">
+                    <div class="white-header">
+                        <h5>Recently Built Robots</h5>
+                     </div>
+                     <div class="row">
+                       <div class="col-sm-6 col-xs-6 goleft">
+                           <p>Robot ID: {recentRobotId}</p>
+                        </div>
+                       <div class="col-sm-6 col-xs-6"></div>
+                     </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{recentTop}.jpeg" title="top" width="120">
+                     </div>
+                   <div class="centered">
+                        <img src="assets/images/parts/{recentTorso}.jpeg" title="torso" width="120">
+                  </div>
+                  <div class="centered">
+                        <img src="assets/images/parts/{recentBottom}.jpeg" title="bottom" width="120">
+                  </div>
+                  </div>
+               </div>
+               {/recentRobots}
+               <!-- RECENTLY BUILT ROBOT SECTION HAS ENDED -->
                <!-- /col-md-4 -->
               <div class="col-md-4 mb">
                  <!-- WHITE PANEL - TOP USER -->

@@ -115,6 +115,11 @@ Release Date: 4/1/17
     - Parts(JW)
         added funtionalities to 'build' and 'buy'
         uses API key from the database to retrieve live data from the umbrella server
+    - Manage(JW)
+        added funtionalities to Sell robots
+
+## *Version 2.5*
+
 		
 Release Date: 4/2/17
 
@@ -132,14 +137,14 @@ Release Date: 4/2/17
 	-handles different inputs accordingly following pagination template
 	-added commenting to clarify program flow.
 
-## *Version 2.5*
-
-Release Date: 4/2/17
-
 ## Updated Components
-- controllers
-    - Parts(JW)
-        added funtionalities to 'build' and 'buy'
-        uses API key from the database to retrieve live data from the umbrella server
-    - Manage(JW)
-        added funtionalities to Sell robots
+
+    - Welcome(KT)
+        added a new recently built feature to the home page 
+        loop through the robot record and find the parts of the last 3 recently built robots
+    - Parts(KT)
+        added css to the table for the parts view
+- View
+    - Homepage(KT)
+        added the html for the recently built robots
+
