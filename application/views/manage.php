@@ -33,13 +33,13 @@
                             <td>Plant Name:</td>
                         </tr>
                         <tr>
-                            <td><input type="texr" id="plant_name" required></td>
+                            <td><input type="text" id="plant_name" required></td>
                         </tr>
                         <tr>
                             <td>Secret Token:</td>
                         </tr>
                         <tr>
-                            <td><input type="texr" id="secret_token" required></td>
+                            <td><input type="text" id="secret_token" required></td>
                         </tr>
                         <tr>
                             <td><button id="btn_register">Register</button></td>
@@ -127,27 +127,24 @@
                     }
                 });
 
-                if(flag){
+                if(robot_arr.length != 0){
                     $.ajax({
-                            type: 'POST',
-                            url: '<?php echo base_url(); ?>' + 'Manage/Sell',
-                            dataType: 'JSON',
-                            data:{id: robot_arr},
-                            success:function(response){
-                                //alert(response);
-                                // if (response==1){
-                                //     alert('Plant Registerd');
-                                // }
-                                // else{
-                                //     alert('Invalid factory name or token given');
-                                // }
-                                // location.reload();
-                            },
-                            error:function(){
-                                // alert('ERROR: Server could not process your request');
-                                // location.reload();
-                            }
-                        });
+                        type: 'POST',
+                        url: '<?php echo base_url(); ?>' + 'Manage/Sell',
+                        dataType: 'JSON',
+                        data:{id: robot_arr},
+                        success: function(data){
+                            if(data['status'] === 'Ok')
+                                alert('Robot(s) successfully sold');
+                            else
+                                alert('ERROR: Robots not sold');
+                        },
+                        error: function(){
+                             alert('ERROR: Invalid Key');
+                        }
+                    });
+
+                    location.reload();
                 }
             })
 

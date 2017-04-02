@@ -7,13 +7,18 @@ class Manage extends Application
     function __construct()
 	{
             parent::__construct();
-            $this->load->model('ApikeyModel');
-            $this->load->model('RobotsModel');
+            $this->load->model('apikeymodel');
+            $this->load->model('robotsmodel');
         }
      public function index()
      {
+         // Prevent unauthorized access
+        $role = $this->session->userdata('userrole');
+        if($role != 'boss')
+            redirect('Welcome');
+
          // Gets all robots
-         $robots = $this->RobotsModel->all();
+         $robots = $this->robotsmodel->all();
          $this->data['robots'] = $robots;
          $this->data['pagebody'] ='Manage';
          $this->render();  
@@ -21,19 +26,24 @@ class Manage extends Application
      
      //reboots factory to default
      public function reboot(){
+         // Prevent unauthorized access
+        $role = $this->session->userdata('userrole');
+        if($role != 'boss')
+            redirect('Welcome');
+
          $context=array(
             "ssl"=>array(
                 "verify_peer"=>false,
                 "verify_peer_name"=>false,
             ),
         ); 
-         $apiKey = $this->ApikeyModel->getKey();
+         $apiKey = $this->apikeymodel->getKey();
          $url = 'http://umbrella.jlparry.com/work/rebootme?key='.$apiKey[0]['apikey'];
          $response = file_get_contents($url,false, stream_context_create($context));
          //$response = file_get_contents('http://umbrella.jlparry.com/work/rebootme?key=2cc5e1',false, stream_context_create($context));
          $data = explode(" ",$response);
          if(strtolower($data[0])=="ok"){
-             $this->ApikeyModel->truncateDb();
+             $this->apikeymodel->truncateDb();
              echo 1;//return ok
          }
          else{
@@ -42,6 +52,11 @@ class Manage extends Application
      }
 
      public function sell(){
+         // Prevent unauthorized access
+        $role = $this->session->userdata('userrole');
+        if($role != 'boss')
+            redirect('Welcome');
+
          $key = $this->apikeymodel->getKey()[0]['apikey'];
 
         if($key != null){
@@ -51,38 +66,42 @@ class Manage extends Application
                 "verify_peer_name"=>false,
                 ),
             ); 
+            // Get id from input
+            $ids = $this->input->post('id');
+            $result = array('status' => 'Fail');
 
-            // Get json response from REST API
-            $response = file_get_contents('https://umbrella.jlparry.com/work/mybuilds?key=' . $key, false, stream_context_create($arrContextOptions));
-            $data = json_decode($response);
+            // Loop though id to sell each bot
+            if($ids != null){
+                foreach($ids as $id){
+                    $robot = $this->robotsmodel->get($id);
 
-            // Check if any parts were actually built
-            if($data != null){
-                $output = array();
-                $i = 0;
+                    if($robot != null){
+                        $response = file_get_contents('https://umbrella.jlparry.com/work/buymybot/'. $robot[0]['top_ca'] .'/'. $robot[0]['torso_ca'] .'/'. $robot[0]['bottom_ca'] . '?key=' . $key, false, stream_context_create($arrContextOptions));
 
-                // Store parts data into an array
-                foreach($data as $record){
-                    $output[$i]['part_ca'] = $record->{'id'};
-                    $output[$i]['part_code'] = $record->{'model'} . $record->{'piece'};
-                    $output{$i}['built_at'] = $record->{'plant'};
-                    $output{$i}['date_built'] = $record->{'stamp'};
-                    $i++;            
+                        $status = substr($response, 0, 2);
+                        if($status == 'Ok'){
+                            // If successfully sold, delete from db
+                            $this->robotsmodel->remove($id);
+                            $result = array('status' => 'Ok');
+                        }
+                    }
                 }
-
-                // Insert built parts into the database
-                $res = $this->partsmodel->insert($output);
             }
 
-            redirect('Parts');
+            echo json_encode($result);
         }
         else{
-            redirect('Parts');
+            echo 'Fail';
         } 
      }
      
      //register factory with server
      public function register(){
+         // Prevent unauthorized access
+        $role = $this->session->userdata('userrole');
+        if($role != 'boss')
+            redirect('Welcome');
+
          $context=array(
             "ssl"=>array(
                 "verify_peer"=>false,
