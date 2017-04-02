@@ -115,4 +115,3 @@ Release Date: 4/1/17
     - Parts(JW)
         added funtionalities to 'build' and 'buy'
         uses API key from the database to retrieve live data from the umbrella server
-
