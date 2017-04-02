@@ -5,8 +5,8 @@ class History extends Application
 	function __construct()
 	{
 		parent::__construct();
-		
 		$this->load->model('historymodel');
+
 	}
 	/**
 	 * About page for our app
@@ -14,17 +14,72 @@ class History extends Application
         public function index() { 
            $this->data['pagebody'] = 'history'; 
 			
-		// build the list of authors, to pass on to our view
-		$source = $this->historymodel->all();
-		$history = array ();
-		foreach ($source as $record)
-		{
-			$history[] = array ('transID' => $record['transID'], 'purchaseType' => $record['purchaseType'],
-			'robotID' => $record['robotID'], 'partsID' => $record['partsID'], 'shipmentID' => $record['shipmentID'],
-			'date' => $record['date'], 'time' => $record['time']);
-		}
-		$this->data['history'] = $history;
+			
+			// build the list of authors, to pass on to our view
+			$source = $this->historymodel->viewParts();
 
-            $this->render();
+			
+			$history = array();
+			foreach($source as $record) {
+				$history[] = array ('transID' => $record['transID'], 'purchaseType' => $record['purchaseType'],
+				'robotID' => $record['robotId'], 'partsID' => $record['partsId'], 'shipmentID' => $record['shipmentId'],
+				'date' => $record['shipmentDate']);
+			}
+			//dateSort
+			//robotMSort
+			
+			$this->data['history'] = $history;
+			$this->render();
+			
+        } 
+
+	 
+	    public function dateSort() { 
+           
+			
+			
+			// build the array to pass to view
+			$dates = $this->historymodel->dateSort();
+		
+			
+			$history = array();
+			foreach($dates as $record) {
+				$history[] = array ('transID' => $record['transID'], 'purchaseType' => $record['purchaseType'],
+				'robotID' => $record['robotId'], 'partsID' => $record['partsId'], 'shipmentID' => $record['shipmentId'],
+				'date' => $record['shipmentDate']);
+			}
+			//dateSort
+			//robotMSort
+			
+			$this->data['history'] = $history;
+			$this->data['pagebody'] = 'history'; 
+			$this->render();
+			
+        } 
+		
+		public function robotIDSort() { 
+           
+			
+			
+			// build the array to pass to view
+			$robot = $this->historymodel->robotIDSort();
+			
+			//var_dump($source);
+			//$this->load->view('history', $source)
+		
+			
+			$history = array();
+			foreach($robot as $record) {
+				$history[] = array ('transID' => $record['transID'], 'purchaseType' => $record['purchaseType'],
+				'robotID' => $record['robotId'], 'partsID' => $record['partsId'], 'shipmentID' => $record['shipmentId'],
+				'date' => $record['shipmentDate']);
+			}
+			//dateSort
+			//robotMSort
+			
+			$this->data['history'] = $history;
+			$this->data['pagebody'] = 'history'; 
+			$this->render();
+			
         } 
 }
