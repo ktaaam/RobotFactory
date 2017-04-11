@@ -117,6 +117,7 @@ class Manage extends Application
          $data = explode(" ",$response);
          $key = $this->apikeymodel->getKey();
          if(strtolower($data[0])=="ok"){//check if response is ok
+            $this->apikeymodel->truncateDb();
             if(sizeof($key)>0){//check if a key exists in db
                $key = $data[1];//set response val as key
                $this->apikeymodel->updateKey($key);

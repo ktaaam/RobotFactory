@@ -2,30 +2,26 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Application
-{
+class Welcome extends Application {
 
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->model('PartsModel');
-		$this->load->model('RobotsModel');
-		$this->load->model('HistoryModel');
+    function __construct() {
+        parent::__construct();
+        $this->load->model('PartsModel');
+        $this->load->model('RobotsModel');
+        $this->load->model('HistoryModel');
+    }
 
-	}
-
-	/**
-	 * Homepage for our app
-	 */
-	public function index()
-	{    
-		$topPartsCounter    = 0;
+    /**
+     * Homepage for our app
+     */
+    public function index() {
+        $topPartsCounter = 0;
         $bottomPartsCounter = 0;
-        $torsoPartsCounter  = 0;
-        $totalParts         = 0;
-        $totalRobotsAssem   = 0;
-        $totalBotsSold      = 0;
-        $totalBotsBought    = 0;
+        $torsoPartsCounter = 0;
+        $totalParts = 0;
+        $totalRobotsAssem = 0;
+        $totalBotsSold = 0;
+        $totalBotsBought = 0;
 
         $this->data['pagebody'] = 'homepage'; 
 		// build the list of parts, to pass on to our view
@@ -40,17 +36,16 @@ class Welcome extends Application
 									       'recentRobotId' => "Default");
 
 
-		//loop through and count the amount of parts for each
-		foreach ($source as $record)
-		{
-			//if the part has a 1 add 1 to the top counter
-            if($record['part_code'][1] == "1"){
+        //loop through and count the amount of parts for each
+        foreach ($source as $record) {
+            //if the part has a 1 add 1 to the top counter
+            if ($record['part_code'][1] == "1") {
                 $topPartsCounter = $topPartsCounter + 1;
-            //if the part has a 3 add  1 to the bottom counter
-            }else if($record['part_code'][1] == "3"){
+                //if the part has a 3 add  1 to the bottom counter
+            } else if ($record['part_code'][1] == "3") {
                 $bottomPartsCounter = $bottomPartsCounter + 1;
-            // if the part has a 2 add 1 to the torso counter
-            }else if($record['part_code'][1] == "2"){
+                // if the part has a 2 add 1 to the torso counter
+            } else if ($record['part_code'][1] == "2") {
                 $torsoPartsCounter = $torsoPartsCounter + 1;
             }
 

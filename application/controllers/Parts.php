@@ -25,9 +25,11 @@ class Parts extends Application
                     foreach($source as $record){
                         $record['part_pic'] = $record['part_code'] . ".jpeg";
                         $record['part_model'] = strtoupper($record['part_code'][0]);
-                        $rows[] = $this->parser->parse('parts_row',(array)$record,true);
+                        $row[] = $this->parser->parse('parts_row',(array)$record,true);
+                        $rows = $this->table->make_columns($row,5);
+                        $this->data['partsTable'] = $this->table->generate($rows);
                     }
-
+                }
      
                 // Sets table template
                 $params = array
@@ -38,15 +40,15 @@ class Parts extends Application
                 );
                 // Generates table
                 $this->table->set_template($params);
-                $rows = $this->table->make_columns($rows,5);
-                $this->data['partsTable'] = $this->table->generate($rows);
+                
                 $this->render();      
+            
             }       
             else{
-                redirect('Welcome');
+                redirect('Welcome');                
             }
         }
-    }   
+       
         public function build(){
         // Get API key from database
         $key = $this->apikeymodel->getKey()[0]['apikey'];
