@@ -137,7 +137,7 @@ class HistoryModel extends CI_Model {
 		$config['base_url'] = base_url().'History/robotIDSort';
 		$config['total_rows'] = $query2->num_rows();
 		$config['per_page'] = 20;
-		$config['num_links'] = 3;
+		$config['num_links'] = 50;
 		$config['uri_segment'] = 3;
 		
 		$config['full_tag_open'] = '<ul class ="pagination">';

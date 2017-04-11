@@ -33,6 +33,12 @@ class Welcome extends Application
 		$robots = $this->RobotsModel->all();
 		$history = $this->HistoryModel->all();
 		$robotPart = array ();
+		$recentRobots[] = array();
+		$recentRobots[0] = array(         'recentTop'     =>  'c1',
+									       'recentTorso'   => 'c2',
+									       'recentBottom'  => 'c3',
+									       'recentRobotId' => "Default");
+
 
 		//loop through and count the amount of parts for each
 		foreach ($source as $record)
@@ -51,18 +57,23 @@ class Welcome extends Application
             $totalParts = $totalParts + 1;
 		}
 		// size of records
-		$i = sizeof($record);
+		$i = sizeof($robots);
+		$j = 1;
 		// counts the amount of robots assembled and also add the recently created bots (3 only)
 		foreach($robots as $record)
 		{
+
 			$totalRobotsAssem = $totalRobotsAssem + 1;
 			if($i <= 3){
-				$recentRobots[] = array( 'recentTop'     => $record['top'],
-									     'recentTorso'   => $record['torso'],
-									     'recentBottom'  => $record['bottom'],
-									     'recentRobotId' => $record['robot_id']);
+				$recentRobots[$j] = array( 'recentTop'   => $record['top'],
+									       'recentTorso'   => $record['torso'],
+									       'recentBottom'  => $record['bottom'],
+									       'recentRobotId' => $record['robot_id']);
+			
 			}
-			$i--;
+			
+			$j++;
+			
 		}
 		//loop through history and find the amount of sold and bought
 		foreach($history as $record)
@@ -88,7 +99,10 @@ class Welcome extends Application
                             'totalBotsSold'      => $totalBotsSold,
                             'totalBotsBought'    => $totalBotsBought);
 		$this->data['robotParts']   = $robotPart;
-		$this->data['recentRobots'] = $recentRobots;
+		if(sizeof($recentRobots) !=  0){
+			$this->data['recentRobots'] = $recentRobots;
+		}
+		
  
 		$this->render();
 	}
